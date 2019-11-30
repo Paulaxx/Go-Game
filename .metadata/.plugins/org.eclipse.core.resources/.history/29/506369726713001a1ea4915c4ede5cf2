@@ -1,0 +1,27 @@
+package gogame;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+import java.util.concurrent.Executors;
+
+public class Client {
+	
+	//TO DO: wywolanie klasy tworzacej okienko(gui)
+	
+	private Socket socket;
+    private Scanner in;
+    private PrintWriter out;
+
+	
+	public Client(String serverAddress) throws Exception {
+		
+		socket = new Socket(serverAddress, 58901);
+        in = new Scanner(socket.getInputStream());
+        out = new PrintWriter(socket.getOutputStream(), true);
+        
+	}
+
+}
