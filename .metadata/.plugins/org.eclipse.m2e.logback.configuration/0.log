@@ -65,3 +65,5 @@
 2019-11-30 12:47:25,771 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\paula\eclipse-workspace\GoGame\goproject\src\test\resources
 2019-11-30 12:49:21,257 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2019-11-30 12:49:21,260 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\paula\eclipse-workspace\GoGame\goproject\src\main\resources
+2019-11-30 12:49:21,265 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-11-30 12:49:21,268 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\paula\eclipse-workspace\GoGame\goproject\src\test\resources
