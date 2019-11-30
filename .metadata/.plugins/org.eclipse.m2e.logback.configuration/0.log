@@ -67,3 +67,15 @@
 2019-11-30 12:49:21,260 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\paula\eclipse-workspace\GoGame\goproject\src\main\resources
 2019-11-30 12:49:21,265 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2019-11-30 12:49:21,268 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\paula\eclipse-workspace\GoGame\goproject\src\test\resources
+2019-11-30 13:38:29,320 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-11-30 13:38:29,322 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\paula\eclipse-workspace\GoGame\goproject\src\main\resources
+2019-11-30 13:38:29,330 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-11-30 13:38:29,370 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\paula\eclipse-workspace\GoGame\goproject\src\test\resources
+2019-11-30 13:38:45,535 [Worker-42: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-11-30 13:38:45,539 [Worker-42: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\paula\eclipse-workspace\GoGame\goproject\src\main\resources
+2019-11-30 13:38:45,547 [Worker-42: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-11-30 13:38:45,552 [Worker-42: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\paula\eclipse-workspace\GoGame\goproject\src\test\resources
+2019-11-30 13:48:42,939 [Worker-51: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-11-30 13:48:42,939 [Worker-51: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\paula\eclipse-workspace\GoGame\goproject\src\main\resources
+2019-11-30 13:48:42,941 [Worker-51: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-11-30 13:48:42,943 [Worker-51: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\paula\eclipse-workspace\GoGame\goproject\src\test\resources
