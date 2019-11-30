@@ -48,10 +48,12 @@ public class Client extends JFrame implements ActionListener{
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void actionPerformed(ActionEvent e) {
 		Object z = e.getSource();
 		ArrayList<String> toSocket = new ArrayList<>();
 		String x,y;
+		ArrayList<String> fromSocket =null;
 		
 		if(z==pas)
 			toSocket.add("pass");
@@ -78,12 +80,18 @@ public class Client extends JFrame implements ActionListener{
 	        ex.printStackTrace();
 		}
 		
-		//waiting for data from server
-		/*try {
-	         String fromSocket = (String)in.readObject(); 
-	         label.setText(fromSocket);
+
+		try {
+	         fromSocket = (ArrayList<String>)in.readObject(); 
 	    } 
-		catch(Exception ex) {}*/
+		catch(Exception ex) {}
+		
+		if(fromSocket.get(0)=="T") {
+			//TO DO: wstawianie fromSocket.get(1) i fromSocket.get(2) (to sa wspolrzedne x i y) na nich wstawiamy pionka
+		}
+		if(fromSocket.get(0)=="N") {
+			//TO DO: wyswietl informacje zeby ktos jeszcze raz wstawil pionka
+		}
 	}
 	
 	
