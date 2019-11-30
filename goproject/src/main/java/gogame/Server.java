@@ -7,7 +7,7 @@ public class Server {
 		
 	static String[][] Board;
 	static int size, bot, pas=0, x, y;
-	static String actualColor="white";
+	static String actualColor="white", answer;
 	
 	ServerSocket server;
 	Socket client;
@@ -46,23 +46,40 @@ public class Server {
             while(in != null) {
             	@SuppressWarnings("unchecked")
 				ArrayList<String> fromSocket = (ArrayList<String>)in.readObject();
-            	if(fromSocket.get(0)=="pas") {
+            	String whatChoosen = fromSocket.get(0);
+        		
+            	if(whatChoosen.contentEquals("size")) {
+            		size=Integer.parseInt(fromSocket.get(1));
+            		Board = new String[size][size];
+            		out.writeObject(answer);
+            	}
+            	else if(whatChoosen.contentEquals("bot")) {
+            		bot=Integer.parseInt(fromSocket.get(1));
+            		out.writeObject(answer);
+            	}
+            	else if(whatChoosen.contentEquals("pas")) {
             		//TO DO: co robi kiedy pasują
+            		out.writeObject(answer); //usunac przy wysylaniu innych danych
             	}
-            	else if(fromSocket.get(0)=="black") {
+            	else if(whatChoosen.contentEquals("black")) {
+            		System.out.println("Server send: "+answer);
             		x=Integer.parseInt(fromSocket.get(1));
             		y=Integer.parseInt(fromSocket.get(2));
             		//TO DO: sprawdza na podstawie tablicy Board czy na danych wspolrzednych(x,y) mozna tam postawic pionka
             		// jak mozna to wysyla do clienta 'T'  out.writeObject("T");
             		// jak nie to wysyla 'N' out.writeObject("N");
+            		System.out.println("Server send: "+answer);
+            		out.writeObject(answer); //usunac przy wysylaniu innych danych
             	}
-            	else if(fromSocket.get(0)=="white") {
+            	else if(whatChoosen.contentEquals("white")) {
             		x=Integer.parseInt(fromSocket.get(1));
             		y=Integer.parseInt(fromSocket.get(2));
             		//TO DO: sprawdza na podstawie tablicy Board czy na danych wspolrzednych(x,y) mozna tam postawic pionka
             		// jak mozna to wysyla do clienta 'T'  out.writeObject("T");
             		// jak nie to wysyla 'N' out.writeObject("N");
+            		out.writeObject(answer); //usunac przy wysylaniu innych danych
             	}
+            	
             	
             	
             	
@@ -92,15 +109,7 @@ public class Server {
 	
 	
 	
-public static void main(String[] args) throws IOException{
-		ServerSocket ss=new ServerSocket(4994);
-		Socket s=ss.accept();
-		
-		InputStreamReader in = new InputStreamReader(s.getInputStream());
-		BufferedReader bf = new BufferedReader(in);
-		String properties=bf.readLine();
-		size=Integer.parseInt(properties);
-		Board = new String [size][size];
+public static void main(String[] args){
 		
 		new Server();
 	}		
