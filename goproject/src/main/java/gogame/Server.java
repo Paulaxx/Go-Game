@@ -16,9 +16,8 @@ public class Server {
             System.out.println("Go server is running...");
             ExecutorService pool = Executors.newFixedThreadPool(200);
             while (true) {
-                //Game game = new Game();
-                //pool.execute(game.new Player(listener.accept(), 'X'));
-                //pool.execute(game.new Player(listener.accept(), 'O'));
+            	pool.execute(new Player(listener.accept(), 'B'));
+            	pool.execute(new Player(listener.accept(), 'W'));
             }
         }
     }
