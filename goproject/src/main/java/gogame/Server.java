@@ -113,4 +113,7 @@ public static void main(String[] args){
 		
 		new Server();
 	}		
+
+//funkcja liczaca punkty
+//funkcja sprawdzajaca czy mozna wstawic (czy nic tam nie stoi i czy nie samobojstwo)
 }
