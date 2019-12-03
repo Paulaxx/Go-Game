@@ -4,11 +4,12 @@ import java.net.*;
 import java.util.ArrayList;
 
 public class Server {
-		
-	static String[][] Board;
-	static int size, bot, pas=0, x, y;
-	static String actualColor="white", answer;
 	
+	//static String[][] Board;
+	static int size=9, bot, pas=0, x, y;
+	static String actualColor="white",opponentColor="black",empty="", answer;
+    static String[][] Board = new String[size+1][size+1];
+   
 	ServerSocket server;
 	Socket client;
 	ObjectInputStream in;
@@ -78,6 +79,7 @@ public class Server {
             		// jak mozna to wysyla do clienta 'T'  out.writeObject("T");
             		// jak nie to wysyla 'N' out.writeObject("N");
             		out.writeObject(answer); //usunac przy wysylaniu innych danych
+            	
             	}
             	
             	
@@ -111,9 +113,48 @@ public class Server {
 	
 public static void main(String[] args){
 		
+		resetBoard();
 		new Server();
-	}		
+			
+	}	
 
+static void resetBoard() {
+	
+	for(int i=0;i<size+1;i++) {
+		 for(int j=0;j<size+1;j++) {
+			 
+			 if(i == 0 || j == 0 || i == size || j == size) {
+				 Board[i][j] = "border";	
+			 }
+			 else {
+				 Board[i][j] = "empty";
+			 }
+		 }
+	}
+	
+	
+	
+	
+}
+
+public void changeColor(){
+	
+	if(actualColor == "white") {
+		opponentColor = actualColor;
+		actualColor = "black";
+	}
+	else {
+		opponentColor = actualColor;
+		actualColor = "white";	
+	}
+	
+	
+	
+}
 //funkcja liczaca punkty
 //funkcja sprawdzajaca czy mozna wstawic (czy nic tam nie stoi i czy nie samobojstwo)
+
+
+//public 
+
 }
