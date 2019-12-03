@@ -66,6 +66,7 @@ public class Server {
             		System.out.println("Server send: "+answer);
             		x=Integer.parseInt(fromSocket.get(1));
             		y=Integer.parseInt(fromSocket.get(2));
+            		actualColor="black";
             		//TO DO: sprawdza na podstawie tablicy Board czy na danych wspolrzednych(x,y) mozna tam postawic pionka
             		// jak mozna to wysyla do clienta 'T'  out.writeObject("T");
             		// jak nie to wysyla 'N' out.writeObject("N");
@@ -75,6 +76,7 @@ public class Server {
             	else if(whatChoosen.contentEquals("white")) {
             		x=Integer.parseInt(fromSocket.get(1));
             		y=Integer.parseInt(fromSocket.get(2));
+            		actualColor="white";
             		//TO DO: sprawdza na podstawie tablicy Board czy na danych wspolrzednych(x,y) mozna tam postawic pionka
             		// jak mozna to wysyla do clienta 'T'  out.writeObject("T");
             		// jak nie to wysyla 'N' out.writeObject("N");
@@ -111,46 +113,127 @@ public class Server {
 	
 	
 	
-public static void main(String[] args){
+	public static void main(String[] args){
 		
 		resetBoard();
 		new Server();
 			
 	}	
 
-static void resetBoard() {
+	static void resetBoard() {
 	
-	for(int i=0;i<size+1;i++) {
-		 for(int j=0;j<size+1;j++) {
+		for(int i=0;i<size+1;i++) {
+			for(int j=0;j<size+1;j++) {
 			 
-			 if(i == 0 || j == 0 || i == size || j == size) {
-				 Board[i][j] = "border";	
-			 }
-			 else {
-				 Board[i][j] = "empty";
-			 }
-		 }
+				if(i == 0 || j == 0 || i == size || j == size) {
+					Board[i][j] = "border";	
+				}
+				else {
+					Board[i][j] = "empty";
+				}
+			}
+		}
+		
 	}
-	
-	
-	
-	
-}
 
-public void changeColor(){
+	public void changeColor(){
 	
-	if(actualColor == "white") {
-		opponentColor = actualColor;
-		actualColor = "black";
+		if(actualColor == "white") {
+			opponentColor = actualColor;
+			actualColor = "black";
+		}
+		else {
+			opponentColor = actualColor;
+			actualColor = "white";	
+		}
+	
+		
 	}
-	else {
-		opponentColor = actualColor;
-		actualColor = "white";	
+	
+	public boolean CanYouInsert(int x,int y) {
+		
+		if(Board[x][y].equals("empty")) {
+			
+			
+			if(HowManyBreaths(x,y) == 0) {
+				
+				if(CanTakeOpponentChain(x,y) == true) {
+					
+					return true;	
+				}
+				else {
+					
+					if(Board[x + 1][y].equals(opponentColor) && Board[x][y + 1].equals(opponentColor) && Board[x - 1][y].equals(opponentColor) && Board[x][y - 1].equals(opponentColor)) {
+						
+						return false;
+					}
+					else
+					{
+					
+						if(IsItChainSuicide(x,y) == true) {
+							
+							return false;
+							
+						}
+						else {
+							
+							return true;
+						}
+						
+					}
+							
+					
+				}
+				
+			}
+			else {
+				
+				return true;
+				
+			}
+		}
+		else {	
+			
+			return false;		
+		}
+		
+	}
+	
+	public int HowManyBreaths(int x,int y) {
+		
+		int breath=0;
+		
+		if(Board[x + 1][y].equals("empty"))
+			breath++;
+		if(Board[x][y + 1].equals("empty"))
+			breath++;
+		if(Board[x - 1][y].equals("empty"))
+			breath++;
+		if(Board[x][y - 1].equals("empty"))
+			breath++;
+		
+		return breath;
+	}
+	
+	public boolean CanTakeOpponentChain(int x,int y) {
+		
+		
+		return false;
+		
+		// TO DO
+		
+	}
+	
+	public boolean IsItChainSuicide(int x,int y) {
+		
+		
+		return false;
+		
+		// TO DO
+		
 	}
 	
 	
-	
-}
 //funkcja liczaca punkty
 //funkcja sprawdzajaca czy mozna wstawic (czy nic tam nie stoi i czy nie samobojstwo)
 
