@@ -6,9 +6,10 @@ import java.util.ArrayList;
 public class Server {
 	
 	//static String[][] Board;
-	static int size=9, bot, pas=0, x, y;
+	static int size=9,suma=0,breath_count=0,breath1=-1,breath2=-1,breath3=-1,breath4=-1, bot, pas=0, x, y;
 	static String actualColor="white",opponentColor="black",empty="", answer;
     static String[][] Board = new String[size+1][size+1];
+    static String[][] copyBoard = new String[size+1][size+1];
    
 	ServerSocket server;
 	Socket client;
@@ -63,15 +64,29 @@ public class Server {
             		out.writeObject(answer); //usunac przy wysylaniu innych danych
             	}
             	else if(whatChoosen.contentEquals("black")) {
-            		System.out.println("Server send: "+answer);
+            		//System.out.println("Server send: "+answer);
             		x=Integer.parseInt(fromSocket.get(1));
             		y=Integer.parseInt(fromSocket.get(2));
             		actualColor="black";
             		//TO DO: sprawdza na podstawie tablicy Board czy na danych wspolrzednych(x,y) mozna tam postawic pionka
+            		
+            		if(CanYouInsert(x,y) == true) {
+            			
+            			Board[x][y] = actualColor;
+            			out.writeObject("T");
+            		}
+            		else {
+            			
+            			out.writeObject("N");
+            		}
+            		
+            		//showBoard();
+            		
+            		
             		// jak mozna to wysyla do clienta 'T'  out.writeObject("T");
             		// jak nie to wysyla 'N' out.writeObject("N");
-            		System.out.println("Server send: "+answer);
-            		out.writeObject(answer); //usunac przy wysylaniu innych danych
+            		//System.out.println("Server send: "+answer);
+            		//out.writeObject(answer); //usunac przy wysylaniu innych danych
             	}
             	else if(whatChoosen.contentEquals("white")) {
             		x=Integer.parseInt(fromSocket.get(1));
@@ -79,8 +94,26 @@ public class Server {
             		actualColor="white";
             		//TO DO: sprawdza na podstawie tablicy Board czy na danych wspolrzednych(x,y) mozna tam postawic pionka
             		// jak mozna to wysyla do clienta 'T'  out.writeObject("T");
+            		
+            		if(CanYouInsert(x,y) == true) {
+            			
+            			Board[x][y] = actualColor;
+            			out.writeObject("T");
+            		}
+            		else {
+            			
+            			out.writeObject("N");
+            		}
+            		
+            		//showBoard();
+            		//System.out.println(HowManyBreaths(3,4));
+            		//System.out.println(CanYouInsert(3,4));
+            		//System.out.println(CanTakeOpponentChain(3,4));
+            		//changeColor();
+            		//System.out.println(CanTakeOpponentChain(3,4));
+            		//System.out.println(ChainBreaths(3,3));
             		// jak nie to wysyla 'N' out.writeObject("N");
-            		out.writeObject(answer); //usunac przy wysylaniu innych danych
+            		//out.writeObject(answer); //usunac przy wysylaniu innych danych
             	
             	}
             	
@@ -135,6 +168,20 @@ public class Server {
 		}
 		
 	}
+	
+	static void showBoard() {
+		
+		for(int i=0;i<size+1;i++) {
+			for(int j=0;j<size+1;j++) {
+			 
+			System.out.println(Board[i][j]);
+			}
+			System.out.println(" ");
+		}
+		System.out.println(" ");
+		System.out.println(" ");
+		System.out.println(" ");
+	}
 
 	public void changeColor(){
 	
@@ -157,7 +204,7 @@ public class Server {
 			
 			if(HowManyBreaths(x,y) == 0) {
 				
-				if(CanTakeOpponentChain(x,y) == true) {
+				if(CanTakeOpponentChain(x+1,y) == true || CanTakeOpponentChain(x-1,y) == true || CanTakeOpponentChain(x,y+1) == true || CanTakeOpponentChain(x,y-1) == true) {
 					
 					return true;	
 				}
@@ -169,14 +216,14 @@ public class Server {
 					}
 					else
 					{
-					
-						if(IsItChainSuicide(x,y) == true) {
-							
+						changeColor();
+						if(CanTakeOpponentChain(x,y) == true) {
+							changeColor();
 							return false;
 							
 						}
 						else {
-							
+							changeColor();
 							return true;
 						}
 						
@@ -215,23 +262,174 @@ public class Server {
 		return breath;
 	}
 	
-	public boolean CanTakeOpponentChain(int x,int y) {
+	public int ChainBreaths(int x,int y) {
+	
+		String curColor = copyBoard[x][y];
 		
-		
-		return false;
-		
-		// TO DO
+		if(copyBoard[x+1][y].equals(curColor) ) {
+			
+			copyBoard[x][y]="checked";
+			if(HowManyBreaths(x,y) > 0) {
+				
+				return 1;
+			}
+				
+			return ChainBreaths(x+1,y);	
+			
+		}
+		 if(copyBoard[x-1][y].equals(curColor) ) {
+			
+			 copyBoard[x][y]="checked";
+			if(HowManyBreaths(x,y) > 0) {
+					
+				return 1;
+			}
+					
+			return ChainBreaths(x-1,y);	
+			
+			
+		}
+		 if(copyBoard[x][y+1].equals(curColor) ) {
+				
+			 copyBoard[x][y]="checked";
+			if(HowManyBreaths(x,y) > 0) {
+					
+				return 1;
+			}
+					
+			return ChainBreaths(x,y+1);	
+			
+			
+		}
+		 if(copyBoard[x][y-1].equals(curColor) ) {
+				
+			 copyBoard[x][y]="checked";
+			if(HowManyBreaths(x,y) > 0) {
+					
+				return 1;
+			}
+					
+			return ChainBreaths(x,y-1);	
+			
+			
+		}
+		 return 0;
 		
 	}
 	
-	public boolean IsItChainSuicide(int x,int y) {
+	public boolean CanTakeOpponentChain(int x,int y) {
 		
 		
-		return false;
-		
-		// TO DO
+		CopyTheBoard();
+		copyBoard[x][y]="checking";
+		if(CanTakeOpponentChain2(x,y) == 1) {
+			breath_count=0;
+			return true;
+		}
+		else {
+			breath_count=0;
+			return false;
+		}
 		
 	}
+	
+	public int CanTakeOpponentChain2(int x,int y) {
+		
+		if(copyBoard[x+1][y].equals(opponentColor)) {
+		
+			breath_count+=HowManyBreaths(x+1,y);
+			if(breath_count > 0) {
+			
+				return 0;
+			}
+			else {
+				copyBoard[x+1][y]="checked";
+				return  CanTakeOpponentChain2(x+1,y) + CanTakeOpponentChain2(x-1,y) + CanTakeOpponentChain2(x,y+1) + CanTakeOpponentChain2(x,y-1);
+			}
+		}
+		
+		if(breath_count > 0) {
+			return 0;
+		}
+	
+		if(copyBoard[x-1][y].equals(opponentColor)) {
+		
+			breath_count+=HowManyBreaths(x-1,y);
+			if(breath_count > 0) {
+			
+				return 0;
+			}
+			else {
+				copyBoard[x-1][y]="checked";
+				return CanTakeOpponentChain2(x+1,y) + CanTakeOpponentChain2(x-1,y) + CanTakeOpponentChain2(x,y+1) + CanTakeOpponentChain2(x,y-1);
+			}
+		}
+		
+		if(breath_count > 0) {
+			return 0;
+		}
+	
+		if(copyBoard[x][y+1].equals(opponentColor)) {
+		
+			breath_count+=HowManyBreaths(x,y+1);
+			if(breath_count > 0) {
+			
+				return 0;
+			}
+			else {
+				copyBoard[x][y+1]="checked";
+				return CanTakeOpponentChain2(x+1,y) + CanTakeOpponentChain2(x-1,y) + CanTakeOpponentChain2(x,y+1) + CanTakeOpponentChain2(x,y-1);
+			}
+		}
+		
+		if(breath_count > 0) {
+			return 0;
+		}
+		
+		if(copyBoard[x][y-1].equals(opponentColor)) {
+		
+			breath_count+=HowManyBreaths(x,y-1);
+			if(breath_count > 0) {
+			
+				return 0;
+			}
+			else {
+				copyBoard[x][y-1]="checked";
+				return CanTakeOpponentChain2(x+1,y) + CanTakeOpponentChain2(x-1,y) + CanTakeOpponentChain2(x,y+1) + CanTakeOpponentChain2(x,y-1);
+			}
+		}
+		
+		if(breath_count > 0) {
+			return 0;
+		}
+		
+	return 1;
+		
+		
+		
+	}
+	
+	static void CopyTheBoard() {
+		
+		int i,j;
+		for(i=0;i<size+1;i++) {
+			
+			for(j=0;j<size+1;j++) {
+				
+				copyBoard[i][j]=Board[i][j];
+				
+			}
+			
+		}
+			
+		
+		
+	}
+	
+	
+		
+		
+	
 	
 	
 //funkcja liczaca punkty
