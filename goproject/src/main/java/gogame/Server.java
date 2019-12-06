@@ -272,6 +272,7 @@ public class Server {
 			if(HowManyBreaths(x,y) > 0) {
 				
 				return 1;
+				// do poprawy
 			}
 				
 			return ChainBreaths(x+1,y);	
