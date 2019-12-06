@@ -59,7 +59,7 @@ public class Server {
             		bot=Integer.parseInt(fromSocket.get(1));
             		out.writeObject(answer);
             	}
-            	else if(whatChoosen.contentEquals("pas")) {
+            	else if(whatChoosen.contentEquals("pass")) {
             		//TO DO: co robi kiedy pasują
             		out.writeObject(answer); //usunac przy wysylaniu innych danych
             	}
