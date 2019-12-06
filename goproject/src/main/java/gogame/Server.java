@@ -16,6 +16,8 @@ public class Server {
 	ObjectInputStream in1, in2;
 	ObjectOutputStream out1, out2;
 	
+	//TO DO: przemyslec przelaczanie miedzy klientami zeby serwer wiedzial
+	
 	
 	public Server() {
 		try {

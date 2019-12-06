@@ -128,6 +128,8 @@ public class Client extends JFrame implements ActionListener{
         }
 	}
 	
+	//TO DO: dopracowac przesylanie informacji miedzy klientem i botem
+	
 	
 
 	
