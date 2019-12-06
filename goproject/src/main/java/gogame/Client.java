@@ -91,7 +91,7 @@ public class Client extends JFrame implements ActionListener{
 			toSocket.add(y);			
 		}
 		
-		System.out.println("Client send:"+toSocket);
+		System.out.println("Client wysłał:"+toSocket);
 		try {
 			out.writeObject(toSocket);
 			out.flush();
@@ -103,7 +103,7 @@ public class Client extends JFrame implements ActionListener{
 
 		try {
 			String fromSocket = (String)in.readObject(); 
-			System.out.println("Client received: "+fromSocket);
+			System.out.println("Client otrzymuje: "+fromSocket);
 	    } 
 		catch(Exception ex) {}
 		
@@ -118,7 +118,7 @@ public class Client extends JFrame implements ActionListener{
 	
 	private void listenSocket() {
         try {
-            Socket = new Socket("localhost", 4444);
+            Socket = new Socket("localhost", 5001);
             out = new ObjectOutputStream(Socket.getOutputStream());
             in = new ObjectInputStream(Socket.getInputStream());
         } 
