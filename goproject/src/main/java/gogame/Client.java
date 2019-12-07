@@ -18,7 +18,7 @@ public class Client extends JFrame implements ActionListener{
 	
 	static String firstanswer="";
 	JMenu move, properties;
-	JMenuItem pas, black, white, size, bot;
+	JMenuItem pas, movee, size, bot;
 	static String toSocket, Size, Bot;
 	JLabel label;
 	
@@ -30,8 +30,7 @@ public class Client extends JFrame implements ActionListener{
 		move = new JMenu("Move");
 		properties = new JMenu("properties");
 		pas = new JMenuItem("pas");
-		black = new JMenuItem("black");
-		white = new JMenuItem("white");
+		movee = new JMenuItem("movee");
 		size = new JMenuItem("size");
 		bot = new JMenuItem("bot");
 		
@@ -43,16 +42,14 @@ public class Client extends JFrame implements ActionListener{
 		menuBar.add(move);
 		menuBar.add(properties);
 		move.add(pas);
-		move.add(black);
-		move.add(white);
+		move.add(movee);
 		properties.add(size);
 		properties.add(bot);
 		
 		move.addActionListener(this);
 		properties.addActionListener(this);
 		pas.addActionListener(this);
-		black.addActionListener(this);
-		white.addActionListener(this);
+		movee.addActionListener(this);
 		size.addActionListener(this);
 		bot.addActionListener(this);
 		
@@ -82,21 +79,13 @@ public class Client extends JFrame implements ActionListener{
 		
 		else if(z==pas)
 			toSocket.add("pass");
-		else if(z==black) {
-			toSocket.add("black");
-			x=JOptionPane.showInputDialog("enter the x coordinate:");
-			toSocket.add(x);
-			y=JOptionPane.showInputDialog("enter the y coordinate:");
-			toSocket.add(y);			
-		}
-		else if(z==white) {
+		else if(z==movee) {
 			toSocket.add("white");
 			x=JOptionPane.showInputDialog("enter the x coordinate:");
 			toSocket.add(x);
 			y=JOptionPane.showInputDialog("enter the y coordinate:");
 			toSocket.add(y);			
 		}
-		System.out.println("Client wysłał: " +toSocket);
 		
 		try {
 			

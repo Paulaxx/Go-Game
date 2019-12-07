@@ -44,34 +44,7 @@ public class Player implements Runnable{
             	else if(whatChoosen.contentEquals("pass")) {
             		output.writeObject(Server.answer);         		
             	}
-            	else if(whatChoosen.contentEquals("black")) {
-            		Server.x=Integer.parseInt(fromSocket.get(1));
-            		Server.y=Integer.parseInt(fromSocket.get(2));
-            		Server.actualColor="black";
-            		output.writeObject(Server.answer);
-            		
-            		
-            		/*if(CanYouInsert(x,y) == true) {
-            			
-            			Board[x][y] = actualColor;
-            			out1.writeObject("T");
-            			System.out.println("Serwer wysyla do clienta1: " +"T");
-                		out2.writeObject("T");
-                		System.out.println("Serwer wysyla do clienta2: " +"T");
-            		}
-            		else {
-            			
-            			out1.writeObject("N");
-            			System.out.println("Serwer wysyla do clienta1: " +"N");
-                		out2.writeObject("N");
-                		System.out.println("Serwer wysyla do clienta2: " +"N");
-            		}*/
-            		
-            		//showBoard();
-            		
- 
-            	}
-            	else if(whatChoosen.contentEquals("white")) {
+            	else if(whatChoosen.contentEquals("movee")) {
             		Server.x=Integer.parseInt(fromSocket.get(1));
             		Server.y=Integer.parseInt(fromSocket.get(2));
             		Server.actualColor="white";
