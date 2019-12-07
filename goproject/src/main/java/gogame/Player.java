@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+//TO DO: dopisac wysylanie do przeciwnika zeby uaktualnial swoja plansze
+
 public class Player implements Runnable{
 	
 	char color; //which player('B'-black, 'W'-white)

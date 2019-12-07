@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//TO DO: dopisac obsluge tego co zwraca serwer
 
 public class Client extends JFrame implements ActionListener{
 	
