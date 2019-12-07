@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 //TO DO: dopisac wysylanie do przeciwnika zeby uaktualnial swoja plansze
+//usuniecie actualColor
+//zmienic wysylane komunikaty do klientow
 
 public class Player implements Runnable{
 	

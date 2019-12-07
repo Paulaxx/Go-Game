@@ -90,6 +90,11 @@ public class Client extends JFrame implements ActionListener{
 		try {
 			
 			String fromSocket = (String)in.readObject(); 
+			//if B 1 2 to na tych pozycjach wstawiamy w gui czarne kolko
+			//else if C 1 2 to biale
+			//else if nie to wyswietl info ze tam nie mozna postawic
+			//else if size 13 to zmiana planszy u dwoch graczy
+			//else if 2pasy to wyswietl info ze koniec gry i kto wygral
 	    } 
 		catch(Exception ex) {}
 		
