@@ -1,40 +1,127 @@
 package gogame;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.ArrayList;
 
 public class Player implements Runnable{
 	
-	char mark; //which player('B'-black, 'W'-white)
+	char color; //which player('B'-black, 'W'-white)
 	Socket socket;
-    Scanner input;
-    PrintWriter output;
+	ObjectInputStream input;
+	ObjectOutputStream output;
+	Player opponent;
 
-    public Player(Socket socket, char mark) {
+    public Player(Socket socket, char color) throws IOException{
         this.socket = socket;
-        this.mark = mark;
+        this.color = color;
+        input = new ObjectInputStream(socket.getInputStream());
+        output = new ObjectOutputStream(socket.getOutputStream());
     }
     
     public void run() {
-        try {
-        	input = new Scanner(socket.getInputStream());
-            output = new PrintWriter(socket.getOutputStream(), true);
-            
+
+    	try {
+    		output.writeObject(Server.answer);
+            while(input != null) {
+            	@SuppressWarnings("unchecked")
+				ArrayList<String> fromSocket = (ArrayList<String>)input.readObject();
+            	String whatChoosen = fromSocket.get(0);
+        		
+            	if(whatChoosen.contentEquals("size")) {
+            		Server.size=Integer.parseInt(fromSocket.get(1));
+            		Server.Board = new String[Server.size][Server.size];
+            		output.writeObject(Server.answer);            		
+            	}
+            	else if(whatChoosen.contentEquals("bot")) {
+            		Server.bot=Integer.parseInt(fromSocket.get(1));
+            		output.writeObject(Server.answer);
+            	}
+            	else if(whatChoosen.contentEquals("pass")) {
+            		output.writeObject(Server.answer);         		
+            	}
+            	else if(whatChoosen.contentEquals("black")) {
+            		Server.x=Integer.parseInt(fromSocket.get(1));
+            		Server.y=Integer.parseInt(fromSocket.get(2));
+            		Server.actualColor="black";
+            		output.writeObject(Server.answer);
+            		
+            		
+            		/*if(CanYouInsert(x,y) == true) {
+            			
+            			Board[x][y] = actualColor;
+            			out1.writeObject("T");
+            			System.out.println("Serwer wysyla do clienta1: " +"T");
+                		out2.writeObject("T");
+                		System.out.println("Serwer wysyla do clienta2: " +"T");
+            		}
+            		else {
+            			
+            			out1.writeObject("N");
+            			System.out.println("Serwer wysyla do clienta1: " +"N");
+                		out2.writeObject("N");
+                		System.out.println("Serwer wysyla do clienta2: " +"N");
+            		}*/
+            		
+            		//showBoard();
+            		
+ 
+            	}
+            	else if(whatChoosen.contentEquals("white")) {
+            		Server.x=Integer.parseInt(fromSocket.get(1));
+            		Server.y=Integer.parseInt(fromSocket.get(2));
+            		Server.actualColor="white";
+            		output.writeObject(Server.answer);
+            		
+            		/*if(CanYouInsert(x,y) == true) {
+            			
+            			Board[x][y] = actualColor;
+            			out1.writeObject("T");
+            			System.out.println("Serwer wysyla do clienta1: " +"T");
+                		out2.writeObject("T");
+                		System.out.println("Serwer wysyla do clienta2: " +"T");
+            		}
+            		else {
+            			
+            			out1.writeObject("N");
+            			System.out.println("Serwer wysyla do clienta1: " +"N");
+                		out2.writeObject("N");
+                		System.out.println("Serwer wysyla do clienta2: " +"N");
+            		}*/
+            		
+            		//showBoard();
+            		//System.out.println(HowManyBreaths(3,4));
+            		//System.out.println(CanYouInsert(3,4));
+            		//System.out.println(CanTakeOpponentChain(3,4));
+            		//changeColor();
+            		//System.out.println(CanTakeOpponentChain(3,4));
+            		//System.out.println(ChainBreaths(3,3));
+            		// jak nie to wysyla 'N' out.writeObject("N");
+            		//out.writeObject(answer); //usunac przy wysylaniu innych danych
+            	
+            	}	
+            }
         } 
-        catch (Exception e) {
-            e.printStackTrace();
-        } 
-        finally {
-            try {
-            	socket.close();
-            } 
-            catch (IOException e) {}
-        }
+        catch(IOException | ClassNotFoundException e) {
+        	//System.out.println("Accept failed: 4444");
+            System.exit(-1);
+        }    
+    	finally {
+    		try {
+				output.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		try {
+				input.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
     }
 
 

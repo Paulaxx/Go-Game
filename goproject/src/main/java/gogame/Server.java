@@ -1,7 +1,9 @@
 package gogame;
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 public class Server {
 	
@@ -10,231 +12,28 @@ public class Server {
 	static String actualColor="white",opponentColor="black",empty="", answer;
     static String[][] Board = new String[size+1][size+1];
     static String[][] copyBoard = new String[size+1][size+1];
+    private static ExecutorService pool = Executors.newFixedThreadPool(200);
    
 	ServerSocket server;
-	Socket client1, client2;
-	ObjectInputStream in1, in2;
-	ObjectOutputStream out1, out2;
-	
-	//TO DO: przemyslec przelaczanie miedzy klientami zeby serwer wiedzial
-	
-	
+
 	public Server() {
 		try {
 			server = new ServerSocket(5001); 
+			while(true) {
+				pool.execute(new Player(server.accept(), 'B'));
+				pool.execute(new Player(server.accept(), 'W'));
+			}
 		}
 		catch (IOException e) {
 			System.out.println("Could not listen on port 5001"); 
 			System.exit(-1);
 		}
-		this.listenSocket();
 	}
-	
-	
-	public void listenSocket() {
-		
-        try {
-            client1 = server.accept();
-            client2 = server.accept();
-        } 
-        catch (IOException e) {
-        	System.out.println("Accept failed: 4444"); 
-        	System.exit(-1);
-        }
-        
-        
-        try {
-        	//pierwszy- czarny
-            in1 = new ObjectInputStream(client1.getInputStream());
-            out1 = new ObjectOutputStream(client1.getOutputStream());
-
-            while(in1 != null) {
-            	@SuppressWarnings("unchecked")
-				ArrayList<String> fromSocket = (ArrayList<String>)in1.readObject();
-            	String whatChoosen = fromSocket.get(0);
-        		
-            	if(whatChoosen.contentEquals("size")) {
-            		size=Integer.parseInt(fromSocket.get(1));
-            		Board = new String[size][size];
-            		out1.writeObject(answer);
-            	}
-            	else if(whatChoosen.contentEquals("bot")) {
-            		bot=Integer.parseInt(fromSocket.get(1));
-            		out1.writeObject(answer);
-            	}
-            	else if(whatChoosen.contentEquals("pass")) {
-            		//TO DO: co robi kiedy pasują
-            		out1.writeObject(answer); //usunac przy wysylaniu innych danych
-            	}
-            	else if(whatChoosen.contentEquals("black")) {
-            		//System.out.println("Server send: "+answer);
-            		x=Integer.parseInt(fromSocket.get(1));
-            		y=Integer.parseInt(fromSocket.get(2));
-            		actualColor="black";
-            		//TO DO: sprawdza na podstawie tablicy Board czy na danych wspolrzednych(x,y) mozna tam postawic pionka
-            		
-            		if(CanYouInsert(x,y) == true) {
-            			
-            			Board[x][y] = actualColor;
-            			out1.writeObject("T");
-            		}
-            		else {
-            			
-            			out1.writeObject("N");
-            		}
-            		
-            		//showBoard();
-            		
-            		
-            		// jak mozna to wysyla do clienta 'T'  out.writeObject("T");
-            		// jak nie to wysyla 'N' out.writeObject("N");
-            		//System.out.println("Server send: "+answer);
-            		//out.writeObject(answer); //usunac przy wysylaniu innych danych
-            	}
-            	else if(whatChoosen.contentEquals("white")) {
-            		x=Integer.parseInt(fromSocket.get(1));
-            		y=Integer.parseInt(fromSocket.get(2));
-            		actualColor="white";
-            		//TO DO: sprawdza na podstawie tablicy Board czy na danych wspolrzednych(x,y) mozna tam postawic pionka
-            		// jak mozna to wysyla do clienta 'T'  out.writeObject("T");
-            		
-            		if(CanYouInsert(x,y) == true) {
-            			
-            			Board[x][y] = actualColor;
-            			out1.writeObject("T");
-            		}
-            		else {
-            			
-            			out1.writeObject("N");
-            		}
-            		
-            		//showBoard();
-            		//System.out.println(HowManyBreaths(3,4));
-            		//System.out.println(CanYouInsert(3,4));
-            		//System.out.println(CanTakeOpponentChain(3,4));
-            		//changeColor();
-            		//System.out.println(CanTakeOpponentChain(3,4));
-            		//System.out.println(ChainBreaths(3,3));
-            		// jak nie to wysyla 'N' out.writeObject("N");
-            		//out.writeObject(answer); //usunac przy wysylaniu innych danych
-            	
-            	}
-            	System.out.println("from client1:");
-            	System.out.println(fromSocket);
-            	
-            	
-            	
-            	
-            	
-            }
-
-            
-            while(in2 != null) {
-            	@SuppressWarnings("unchecked")
-				ArrayList<String> fromSocket2 = (ArrayList<String>)in2.readObject();
-            	String whatChoosen = fromSocket2.get(0);
-        		
-            	if(whatChoosen.contentEquals("size")) {
-            		size=Integer.parseInt(fromSocket2.get(1));
-            		Board = new String[size][size];
-            		out2.writeObject(answer);
-            	}
-            	else if(whatChoosen.contentEquals("bot")) {
-            		bot=Integer.parseInt(fromSocket2.get(1));
-            		out2.writeObject(answer);
-            	}
-            	else if(whatChoosen.contentEquals("pass")) {
-            		//TO DO: co robi kiedy pasują
-            		out2.writeObject(answer); //usunac przy wysylaniu innych danych
-            	}
-            	else if(whatChoosen.contentEquals("black")) {
-            		//System.out.println("Server send: "+answer);
-            		x=Integer.parseInt(fromSocket2.get(1));
-            		y=Integer.parseInt(fromSocket2.get(2));
-            		actualColor="black";
-            		//TO DO: sprawdza na podstawie tablicy Board czy na danych wspolrzednych(x,y) mozna tam postawic pionka
-            		
-            		if(CanYouInsert(x,y) == true) {
-            			
-            			Board[x][y] = actualColor;
-            			out2.writeObject("T");
-            		}
-            		else {
-            			
-            			out2.writeObject("N");
-            		}
-            		
-            		//showBoard();
-            		
-            		
-            		// jak mozna to wysyla do clienta 'T'  out.writeObject("T");
-            		// jak nie to wysyla 'N' out.writeObject("N");
-            		//System.out.println("Server send: "+answer);
-            		//out.writeObject(answer); //usunac przy wysylaniu innych danych
-            	}
-            	else if(whatChoosen.contentEquals("white")) {
-            		x=Integer.parseInt(fromSocket2.get(1));
-            		y=Integer.parseInt(fromSocket2.get(2));
-            		actualColor="white";
-            		//TO DO: sprawdza na podstawie tablicy Board czy na danych wspolrzednych(x,y) mozna tam postawic pionka
-            		// jak mozna to wysyla do clienta 'T'  out.writeObject("T");
-            		
-            		if(CanYouInsert(x,y) == true) {
-            			
-            			Board[x][y] = actualColor;
-            			out2.writeObject("T");
-            		}
-            		else {
-            			
-            			out2.writeObject("N");
-            		}
-            		
-            		//showBoard();
-            		//System.out.println(HowManyBreaths(3,4));
-            		//System.out.println(CanYouInsert(3,4));
-            		//System.out.println(CanTakeOpponentChain(3,4));
-            		//changeColor();
-            		//System.out.println(CanTakeOpponentChain(3,4));
-            		//System.out.println(ChainBreaths(3,3));
-            		// jak nie to wysyla 'N' out.writeObject("N");
-            		//out.writeObject(answer); //usunac przy wysylaniu innych danych
-            	
-            	}
-            	System.out.println("from client2:");
-            	System.out.println(fromSocket2);
-            	
-            	
-            }
-        } 
-        catch(IOException | ClassNotFoundException e) {
-        	//System.out.println("Accept failed: 4444");
-            System.exit(-1);
-        }
-	
-	}
-	
-	
-	
-	protected void finalize() {
-        try {
-            in1.close();
-            out1.close();
-            client1.close();
-            in2.close();
-            out2.close();
-            client2.close();
-            server.close();
-        } 
-        catch(IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-	
 	
 	
 	public static void main(String[] args){
 		
-		//resetBoard();
+		resetBoard();
 		new Server();
 			
 	}	
@@ -514,15 +313,4 @@ public class Server {
 	}
 	
 	
-		
-		
-	
-	
-	
-//funkcja liczaca punkty
-//funkcja sprawdzajaca czy mozna wstawic (czy nic tam nie stoi i czy nie samobojstwo)
-
-
-//public 
-
 }

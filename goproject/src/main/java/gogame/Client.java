@@ -19,6 +19,7 @@ public class Client extends JFrame implements ActionListener{
 	JMenu move, properties;
 	JMenuItem pas, black, white, size, bot;
 	static String toSocket, Size, Bot;
+	JLabel label;
 	
 	public Client(){
 		setTitle("Go Game");
@@ -32,6 +33,10 @@ public class Client extends JFrame implements ActionListener{
 		white = new JMenuItem("white");
 		size = new JMenuItem("size");
 		bot = new JMenuItem("bot");
+		
+		label = new JLabel();
+		label.setBounds(0, 0, 5000, 200);
+		add(label);
 		
 		setJMenuBar(menuBar);
 		menuBar.add(move);
@@ -90,8 +95,14 @@ public class Client extends JFrame implements ActionListener{
 			y=JOptionPane.showInputDialog("enter the y coordinate:");
 			toSocket.add(y);			
 		}
+		System.out.println("Client wysłał: " +toSocket);
 		
-		System.out.println("Client wysłał:"+toSocket);
+		try {
+			
+			String fromSocket = (String)in.readObject(); 
+	    } 
+		catch(Exception ex) {}
+		
 		try {
 			out.writeObject(toSocket);
 			out.flush();
@@ -99,20 +110,6 @@ public class Client extends JFrame implements ActionListener{
 		catch (IOException ex) {
 	        ex.printStackTrace();
 		}
-		
-
-		try {
-			String fromSocket = (String)in.readObject(); 
-			System.out.println("Client otrzymuje: "+fromSocket);
-	    } 
-		catch(Exception ex) {}
-		
-		/*if(fromSocket.get(0)=="T") {
-			//TO DO: wstawianie fromSocket.get(1) i fromSocket.get(2) (to sa wspolrzedne x i y) na nich wstawiamy pionka
-		}
-		if(fromSocket.get(0)=="N") {
-			//TO DO: wyswietl informacje zeby ktos jeszcze raz wstawil pionka
-		}*/
 	}
 	
 	
@@ -128,12 +125,7 @@ public class Client extends JFrame implements ActionListener{
         }
 	}
 	
-	//TO DO: dopracowac przesylanie informacji miedzy klientem i botem
-	
-	
 
-	
-	
 	
 public static void main(String[] args) throws IOException{
 		
