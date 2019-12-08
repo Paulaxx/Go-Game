@@ -18,7 +18,7 @@ public class Client extends JFrame implements ActionListener{
 	
 	static String firstanswer="";
 	JMenu move, properties;
-	JMenuItem pas, movee, size, bot;
+	JMenuItem pas, movee, size, bot, F5;
 	static String toSocket, Size, Bot;
 	JLabel label;
 	
@@ -33,6 +33,7 @@ public class Client extends JFrame implements ActionListener{
 		movee = new JMenuItem("movee");
 		size = new JMenuItem("size");
 		bot = new JMenuItem("bot");
+		F5 = new JMenuItem("F5");
 		
 		label = new JLabel();
 		label.setBounds(0, 0, 5000, 200);
@@ -45,6 +46,7 @@ public class Client extends JFrame implements ActionListener{
 		move.add(movee);
 		properties.add(size);
 		properties.add(bot);
+		properties.add(F5);
 		
 		move.addActionListener(this);
 		properties.addActionListener(this);
@@ -52,6 +54,7 @@ public class Client extends JFrame implements ActionListener{
 		movee.addActionListener(this);
 		size.addActionListener(this);
 		bot.addActionListener(this);
+		F5.addActionListener(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600, 600);
@@ -86,6 +89,9 @@ public class Client extends JFrame implements ActionListener{
 			y=JOptionPane.showInputDialog("enter the y coordinate:");
 			toSocket.add(y);			
 		}
+		else if(z==F5) {
+			toSocket.add("F5");
+		}
 		
 		try {
 			
@@ -95,8 +101,11 @@ public class Client extends JFrame implements ActionListener{
 			//else if nie to wyswietl info ze tam nie mozna postawic
 			//else if size 13 to zmiana planszy u dwoch graczy
 			//else if 2pasy to wyswietl info ze koniec gry i kto wygral
+			label.setText(fromSocket);
 	    } 
 		catch(Exception ex) {}
+		
+		
 		
 		try {
 			out.writeObject(toSocket);

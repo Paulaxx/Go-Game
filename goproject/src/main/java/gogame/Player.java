@@ -37,20 +37,23 @@ public class Player implements Runnable{
             	if(whatChoosen.contentEquals("size")) {
             		Server.size=Integer.parseInt(fromSocket.get(1));
             		Server.Board = new String[Server.size][Server.size];
-            		output.writeObject(Server.answer);            		
+            		output.writeObject("size");            		
             	}
             	else if(whatChoosen.contentEquals("bot")) {
             		Server.bot=Integer.parseInt(fromSocket.get(1));
-            		output.writeObject(Server.answer);
+            		output.writeObject("bot");
             	}
             	else if(whatChoosen.contentEquals("pass")) {
+            		output.writeObject("pass");         		
+            	}
+            	else if(whatChoosen.contentEquals("F5")) {
             		output.writeObject(Server.answer);         		
             	}
             	else if(whatChoosen.contentEquals("movee")) {
             		Server.x=Integer.parseInt(fromSocket.get(1));
             		Server.y=Integer.parseInt(fromSocket.get(2));
             		Server.actualColor="white";
-            		output.writeObject(Server.answer);
+            		output.writeObject("movee");
             		
             		/*if(CanYouInsert(x,y) == true) {
             			
