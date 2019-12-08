@@ -21,15 +21,16 @@ public class Player implements Runnable{
     public Player(Socket socket, char color) throws IOException{
         this.socket = socket;
         this.color = color;
-        input = new ObjectInputStream(socket.getInputStream());
-        output = new ObjectOutputStream(socket.getOutputStream());
+        
     }
     
     public void run() {
 
     	try {
-    		output.writeObject(Server.answer);
-            while(input != null) {
+    		input = new ObjectInputStream(socket.getInputStream());
+            output = new ObjectOutputStream(socket.getOutputStream());
+            output.writeObject(Server.answer);
+            while(true) {
             	@SuppressWarnings("unchecked")
 				ArrayList<String> fromSocket = (ArrayList<String>)input.readObject();
             	String whatChoosen = fromSocket.get(0);
@@ -37,23 +38,31 @@ public class Player implements Runnable{
             	if(whatChoosen.contentEquals("size")) {
             		Server.size=Integer.parseInt(fromSocket.get(1));
             		Server.Board = new String[Server.size][Server.size];
-            		output.writeObject("size");            		
+            		 for (Player someplayer : Server.players) {
+                         someplayer.output.writeObject("size");
+                     }
             	}
             	else if(whatChoosen.contentEquals("bot")) {
             		Server.bot=Integer.parseInt(fromSocket.get(1));
-            		output.writeObject("bot");
+            		for (Player someplayer : Server.players) {
+                        someplayer.output.writeObject("bot");
+                    }
             	}
             	else if(whatChoosen.contentEquals("pass")) {
-            		output.writeObject("pass");         		
+            		for (Player someplayer : Server.players) {
+                        someplayer.output.writeObject("bot");
+                    }        		
             	}
             	else if(whatChoosen.contentEquals("F5")) {
-            		output.writeObject(Server.answer);         		
+            		output.writeObject("F5");     		
             	}
             	else if(whatChoosen.contentEquals("movee")) {
             		Server.x=Integer.parseInt(fromSocket.get(1));
             		Server.y=Integer.parseInt(fromSocket.get(2));
             		Server.actualColor="white";
-            		output.writeObject("movee");
+            		for (Player someplayer : Server.players) {
+                        someplayer.output.writeObject("bot");
+                    }
             		
             		/*if(CanYouInsert(x,y) == true) {
             			
@@ -92,13 +101,11 @@ public class Player implements Runnable{
     		try {
 				output.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     		try {
 				input.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}

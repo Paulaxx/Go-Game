@@ -13,14 +13,14 @@ public class Client extends JFrame implements ActionListener{
 	
 	private static final long serialVersionUID = 1L;
 	Socket Socket;
-    ObjectInputStream in;
     ObjectOutputStream out;
+    ObjectInputStream input;
 	
 	static String firstanswer="";
 	JMenu move, properties;
 	JMenuItem pas, movee, size, bot, F5;
 	static String toSocket, Size, Bot;
-	JLabel label;
+	static JLabel label;
 	
 	public Client(){
 		setTitle("Go Game");
@@ -91,19 +91,13 @@ public class Client extends JFrame implements ActionListener{
 		}
 		else if(z==F5) {
 			toSocket.add("F5");
-		}
+		}	
 		
 		try {
-			
-			String fromSocket = (String)in.readObject(); 
-			//if B 1 2 to na tych pozycjach wstawiamy w gui czarne kolko
-			//else if C 1 2 to biale
-			//else if nie to wyswietl info ze tam nie mozna postawic
-			//else if size 13 to zmiana planszy u dwoch graczy
-			//else if 2pasy to wyswietl info ze koniec gry i kto wygral
-			label.setText(fromSocket);
-	    } 
-		catch(Exception ex) {}
+				String fromSocket = (String)input.readObject();
+				label.setText(fromSocket);
+		} 
+		catch (Exception ex) {}
 		
 		
 		
@@ -121,7 +115,7 @@ public class Client extends JFrame implements ActionListener{
         try {
             Socket = new Socket("localhost", 5001);
             out = new ObjectOutputStream(Socket.getOutputStream());
-            in = new ObjectInputStream(Socket.getInputStream());
+            input = new ObjectInputStream(Socket.getInputStream());
         } 
         catch(IOException ex) {
         	System.out.println("No I/O");

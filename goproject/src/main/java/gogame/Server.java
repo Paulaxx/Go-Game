@@ -1,6 +1,7 @@
 package gogame;
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -13,6 +14,8 @@ public class Server {
     static String[][] Board = new String[size+1][size+1];
     static String[][] copyBoard = new String[size+1][size+1];
     private static ExecutorService pool = Executors.newFixedThreadPool(200);
+    static ArrayList<Player> players = new ArrayList<>();
+
    
 	ServerSocket server;
 
@@ -20,8 +23,13 @@ public class Server {
 		try {
 			server = new ServerSocket(5001); 
 			while(true) {
-				pool.execute(new Player(server.accept(), 'B'));
-				pool.execute(new Player(server.accept(), 'W'));
+				Player player1= new Player(server.accept(), 'B');
+				players.add(player1);
+				pool.execute(player1);
+				Player player2= new Player(server.accept(), 'W');
+				players.add(player2);
+				pool.execute(player2);
+				
 			}
 		}
 		catch (IOException e) {
