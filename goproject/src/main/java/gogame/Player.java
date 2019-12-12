@@ -37,7 +37,7 @@ public class Player implements Runnable{
         		
             	if(whatChoosen.contentEquals("size")) {
             		Server.size=Integer.parseInt(fromSocket.get(1));
-            		Server.Board = new String[Server.size][Server.size];
+            		//Server.Board = new String[Server.size][Server.size];
             		 for (Player someplayer : Server.players) {
                          someplayer.output.writeObject("size");
                      }
@@ -59,14 +59,14 @@ public class Player implements Runnable{
             	else if(whatChoosen.contentEquals("movee")) {
             		Server.x=Integer.parseInt(fromSocket.get(1));
             		Server.y=Integer.parseInt(fromSocket.get(2));
-            		Server.actualColor="white";
+         
             		for (Player someplayer : Server.players) {
                         someplayer.output.writeObject("bot");
                     }
             		
-            		/*if(CanYouInsert(x,y) == true) {
+            		/*if(CanYouInsert(Server.x,Server.y) == true) {
             			
-            			Board[x][y] = actualColor;
+            			gamelogic.Board[x][y] = actualColor;
             			out1.writeObject("T");
             			System.out.println("Serwer wysyla do clienta1: " +"T");
                 		out2.writeObject("T");
@@ -78,15 +78,9 @@ public class Player implements Runnable{
             			System.out.println("Serwer wysyla do clienta1: " +"N");
                 		out2.writeObject("N");
                 		System.out.println("Serwer wysyla do clienta2: " +"N");
-            		}*/
+            		}
+            		*/
             		
-            		//showBoard();
-            		//System.out.println(HowManyBreaths(3,4));
-            		//System.out.println(CanYouInsert(3,4));
-            		//System.out.println(CanTakeOpponentChain(3,4));
-            		//changeColor();
-            		//System.out.println(CanTakeOpponentChain(3,4));
-            		//System.out.println(ChainBreaths(3,3));
             		// jak nie to wysyla 'N' out.writeObject("N");
             		//out.writeObject(answer); //usunac przy wysylaniu innych danych
             	
