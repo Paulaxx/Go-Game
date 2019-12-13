@@ -1,21 +1,24 @@
 package gogame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
-
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import java.net.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-//TO DO: dopisac obsluge tego co zwraca serwer
 
 public class Client extends JFrame implements ActionListener{
 	
 	private static final long serialVersionUID = 1L;
-	Socket Socket;
-    ObjectOutputStream out;
-    ObjectInputStream input;
+	static Socket Socket;
+    static ObjectOutputStream out;
+    static ObjectInputStream input;
 	
 	static String firstanswer="";
 	JMenu move, properties;
@@ -65,6 +68,20 @@ public class Client extends JFrame implements ActionListener{
 		
 	}
 	
+	/*public void start(Stage primaryStage) throws Exception {
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(this.getClass().getResource("/fxml/StackPaneWindow.fxml"));
+		StackPane stackPane = loader.load();
+		
+		Scene scene = new Scene(stackPane);
+		
+		primaryStage.setScene(scene);
+		primaryStage.setTitle("Go Game");
+		primaryStage.show();
+		
+	}*/
+	
 	public void actionPerformed(ActionEvent e) {
 		Object z = e.getSource();
 		ArrayList<String> toSocket = new ArrayList<>();
@@ -84,22 +101,16 @@ public class Client extends JFrame implements ActionListener{
 		else if(z==pas)
 			toSocket.add("pass");
 		else if(z==movee) {
-			toSocket.add("white");
+			toSocket.add("movee");
 			x=JOptionPane.showInputDialog("enter the x coordinate:");
 			toSocket.add(x);
 			y=JOptionPane.showInputDialog("enter the y coordinate:");
-			toSocket.add(y);			
+			toSocket.add(y);	
+			System.out.println(toSocket);
 		}
 		else if(z==F5) {
 			toSocket.add("F5");
-		}	
-		
-		try {
-				String fromSocket = (String)input.readObject();
-				label.setText(fromSocket);
-		} 
-		catch (Exception ex) {}
-		
+		}			
 		
 		
 		try {
@@ -112,24 +123,23 @@ public class Client extends JFrame implements ActionListener{
 	}
 	
 	
-	private void listenSocket() {
-        try {
-            Socket = new Socket("localhost", 5001);
-            out = new ObjectOutputStream(Socket.getOutputStream());
-            input = new ObjectInputStream(Socket.getInputStream());
-        } 
-        catch(IOException ex) {
-        	System.out.println("No I/O");
-            System.exit(-1);
-        }
-	}
-	
 
 	
 public static void main(String[] args) throws IOException{
 		
 		Client client = new Client();
-		client.setVisible(true);
-		client.listenSocket();		
+		client.setVisible(true);		
+	try {
+        Socket = new Socket("localhost", 5010);
+        out = new ObjectOutputStream(Socket.getOutputStream());
+        ServerConnection servenConn = new ServerConnection(Socket);
+        new Thread(servenConn).start();
+    } 
+    catch(IOException ex) {
+    	System.out.println("No I/O");
+        System.exit(-1);
+    }
+	//launch(args);
+	
 	}
 }

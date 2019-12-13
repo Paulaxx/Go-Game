@@ -6,13 +6,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
-//TO DO: dopisac wysylanie do przeciwnika zeby uaktualnial swoja plansze
-//usuniecie actualColor
-//zmienic wysylane komunikaty do klientow
-
 public class Player implements Runnable{
 	
-	char color; //which player('B'-black, 'W'-white)
+	char color;
 	Socket socket;
 	ObjectInputStream input;
 	ObjectOutputStream output;
@@ -29,7 +25,10 @@ public class Player implements Runnable{
     	try {
     		input = new ObjectInputStream(socket.getInputStream());
             output = new ObjectOutputStream(socket.getOutputStream());
-            output.writeObject(Server.answer);
+            for (Player someplayer : Server.players) {
+                someplayer.output.writeObject("1");
+            }
+            
             while(true) {
             	@SuppressWarnings("unchecked")
 				ArrayList<String> fromSocket = (ArrayList<String>)input.readObject();
@@ -37,58 +36,49 @@ public class Player implements Runnable{
         		
             	if(whatChoosen.contentEquals("size")) {
             		Server.size=Integer.parseInt(fromSocket.get(1));
-            		//Server.Board = new String[Server.size][Server.size];
             		 for (Player someplayer : Server.players) {
-                         someplayer.output.writeObject("size");
+                         someplayer.output.writeObject(color+"size"+Server.size);
+                     }
+            	}
+            	if(whatChoosen.contentEquals("move")) {
+            		 for (Player someplayer : Server.players) {
+                         someplayer.output.writeObject(color+"move"+fromSocket.get(1)+fromSocket.get(2));
                      }
             	}
             	else if(whatChoosen.contentEquals("bot")) {
             		Server.bot=Integer.parseInt(fromSocket.get(1));
             		for (Player someplayer : Server.players) {
-                        someplayer.output.writeObject("bot");
+                        someplayer.output.writeObject(color+"bot"+Server.bot);
                     }
             	}
             	else if(whatChoosen.contentEquals("pass")) {
             		for (Player someplayer : Server.players) {
-                        someplayer.output.writeObject("bot");
+                        someplayer.output.writeObject(color+"pass");
                     }        		
             	}
             	else if(whatChoosen.contentEquals("F5")) {
-            		output.writeObject("F5");     		
+            		for (Player someplayer : Server.players) {
+                        someplayer.output.writeObject(color+"F5");
+                    }  		
             	}
             	else if(whatChoosen.contentEquals("movee")) {
-            		Server.x=Integer.parseInt(fromSocket.get(1));
-            		Server.y=Integer.parseInt(fromSocket.get(2));
+            		//Server.x=Integer.parseInt(fromSocket.get(1));
+            		//Server.y=Integer.parseInt(fromSocket.get(2));
          
             		for (Player someplayer : Server.players) {
-                        someplayer.output.writeObject("bot");
+                        someplayer.output.writeObject(color+"move");
                     }
-            		
-            		/*if(CanYouInsert(Server.x,Server.y) == true) {
-            			
-            			gamelogic.Board[x][y] = actualColor;
-            			out1.writeObject("T");
-            			System.out.println("Serwer wysyla do clienta1: " +"T");
-                		out2.writeObject("T");
-                		System.out.println("Serwer wysyla do clienta2: " +"T");
-            		}
-            		else {
-            			
-            			out1.writeObject("N");
-            			System.out.println("Serwer wysyla do clienta1: " +"N");
-                		out2.writeObject("N");
-                		System.out.println("Serwer wysyla do clienta2: " +"N");
-            		}
-            		*/
-            		
-            		// jak nie to wysyla 'N' out.writeObject("N");
-            		//out.writeObject(answer); //usunac przy wysylaniu innych danych
-            	
+            		           	
             	}	
+            	/*else if(whatChoosen.contentEquals("klikniety")) {
+            		for (Player someplayer : Server.players) {
+                        someplayer.output.writeObject("klikniety");
+                    }
+            		System.out.println("klikniety doszedl do serwera");
+            	}*/
             }
         } 
         catch(IOException | ClassNotFoundException e) {
-        	//System.out.println("Accept failed: 4444");
             System.exit(-1);
         }    
     	finally {
@@ -105,6 +95,4 @@ public class Player implements Runnable{
     	}
     }
 
-
-	
 }
