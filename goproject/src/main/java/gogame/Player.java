@@ -70,12 +70,12 @@ public class Player implements Runnable{
                     }
             		           	
             	}	
-            	/*else if(whatChoosen.contentEquals("klikniety")) {
+            	else if(whatChoosen.contentEquals("klikniety")) {
             		for (Player someplayer : Server.players) {
                         someplayer.output.writeObject("klikniety");
                     }
             		System.out.println("klikniety doszedl do serwera");
-            	}*/
+            	}
             }
         } 
         catch(IOException | ClassNotFoundException e) {

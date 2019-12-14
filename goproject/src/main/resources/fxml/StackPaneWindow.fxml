@@ -34,6 +34,9 @@
           <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
         </rowConstraints>
+         <children>
+            <Circle fx:id="circle1" onMouseClicked="#clickmethod" onMouseDragged="#clickmethod" onMouseEntered="#clickmethod" onMouseExited="#clickmethod" onMouseMoved="#clickmethod" onMousePressed="#clickmethod" onMouseReleased="#clickmethod" onTouchMoved="#clickmethod" onTouchPressed="#clickmethod" onTouchReleased="#clickmethod" onTouchStationary="#clickmethod" radius="15.0" stroke="BLACK" strokeType="INSIDE" style="visibility: true; -fx-cursor: true;" />
+         </children>
       </GridPane>
       <VBox prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -54,8 +57,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <Circle radius="15.0" stroke="BLACK" strokeType="INSIDE" translateX="37.0" translateY="12.0" />
-            <Button mnemonicParsing="false" onAction="#send" prefHeight="25.0" prefWidth="740.0" text="Click to send" />
+            <Button fx:id="button1" mnemonicParsing="false" onAction="#clickmethod" text="Button" />
          </children>
       </VBox>
    </children>

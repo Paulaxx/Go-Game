@@ -1,11 +1,12 @@
 package gogame;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import java.net.*;
 import java.util.ArrayList;
@@ -13,9 +14,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 
-public class Client extends JFrame implements ActionListener{
+public class Client extends Application { //extends JFrame implements ActionListener
 	
-	private static final long serialVersionUID = 1L;
 	static Socket Socket;
     static ObjectOutputStream out;
     static ObjectInputStream input;
@@ -27,7 +27,7 @@ public class Client extends JFrame implements ActionListener{
 	static JLabel label;
 	
 	public Client(){
-		setTitle("Go Game");
+		/*setTitle("Go Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -63,16 +63,18 @@ public class Client extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600, 600);
 		setLocationRelativeTo(null);
+		*/
 		
 		
 		
 	}
 	
-	/*public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) throws Exception {
 		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/fxml/StackPaneWindow.fxml"));
 		StackPane stackPane = loader.load();
+		
 		
 		Scene scene = new Scene(stackPane);
 		
@@ -80,7 +82,7 @@ public class Client extends JFrame implements ActionListener{
 		primaryStage.setTitle("Go Game");
 		primaryStage.show();
 		
-	}*/
+	}
 	
 	public void actionPerformed(ActionEvent e) {
 		Object z = e.getSource();
@@ -127,11 +129,12 @@ public class Client extends JFrame implements ActionListener{
 	
 public static void main(String[] args) throws IOException{
 		
-		Client client = new Client();
-		client.setVisible(true);		
+		//Client client = new Client();
+		//client.setVisible(true);	
 	try {
         Socket = new Socket("localhost", 5010);
         out = new ObjectOutputStream(Socket.getOutputStream());
+        launch(args);
         ServerConnection servenConn = new ServerConnection(Socket);
         new Thread(servenConn).start();
     } 
@@ -139,7 +142,6 @@ public static void main(String[] args) throws IOException{
     	System.out.println("No I/O");
         System.exit(-1);
     }
-	//launch(args);
 	
 	}
 }
