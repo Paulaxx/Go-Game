@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gogame.Controller">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #DEB887;">
+         <children>
+            <GridPane layoutX="214.0" layoutY="162.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="50.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Circle fx:id="button1" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="visibility: true;" translateX="17.0" translateY="-11.0" />
+                  <Circle fx:id="button11" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="17.0" translateY="-11.0" GridPane.columnIndex="1" />
+                  <Circle fx:id="button12" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="17.0" translateY="-11.0" GridPane.columnIndex="2" />
+                  <Circle fx:id="button13" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="18.0" translateY="-11.0" GridPane.columnIndex="3" />
+                  <Circle fx:id="button14" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="-11.0" GridPane.columnIndex="4" />
+                  <Circle fx:id="button15" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="-11.0" GridPane.columnIndex="5" />
+                  <Circle fx:id="button16" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="-11.0" GridPane.columnIndex="6" />
+                  <Circle fx:id="button17" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="-11.0" GridPane.columnIndex="7" />
+                  <Circle fx:id="button18" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="-11.0" GridPane.columnIndex="8" />
+                  <Circle fx:id="button110" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="17.0" translateY="-2.0" GridPane.rowIndex="1" />
+                  <Circle fx:id="button19" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="17.0" translateY="-2.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Circle fx:id="button111" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="17.0" translateY="-2.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Circle fx:id="button112" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="18.0" translateY="-2.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Circle fx:id="button113" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="-2.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Circle fx:id="button114" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="-2.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                  <Circle fx:id="button115" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="-2.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <Circle fx:id="button116" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="-2.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                  <Circle fx:id="button117" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="-2.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                  <Circle fx:id="button1101" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="17.0" translateY="4.0" GridPane.rowIndex="2" />
+                  <Circle fx:id="button1102" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="17.0" translateY="4.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Circle fx:id="button1103" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="17.0" translateY="4.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Circle fx:id="button1104" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="18.0" translateY="4.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Circle fx:id="button1105" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="4.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Circle fx:id="button1106" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="4.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                  <Circle fx:id="button1107" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="4.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <Circle fx:id="button1108" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="4.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                  <Circle fx:id="button1109" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="4.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                  <Circle fx:id="button11010" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="17.0" translateY="14.0" GridPane.rowIndex="3" />
+                  <Circle fx:id="button11011" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="17.0" translateY="14.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Circle fx:id="button11012" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="17.0" translateY="14.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Circle fx:id="button11013" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="18.0" translateY="14.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Circle fx:id="button11014" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="14.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Circle fx:id="button11015" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="14.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                  <Circle fx:id="button11016" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="14.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                  <Circle fx:id="button11018" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="14.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                  <Circle fx:id="button11017" onMouseClicked="#clickmethod" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="19.0" translateY="14.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <MenuBar layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="700.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="600.0" style="-fx-border-color: black; -fx-grid-lines-visible: true; -fx-background-position: top;">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="75.0" prefWidth="75.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="75.0" prefWidth="75.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="75.0" prefWidth="75.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="75.0" prefWidth="75.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="75.0" prefWidth="75.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="75.0" prefWidth="75.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="75.0" prefWidth="75.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="75.0" prefWidth="75.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+   </children>
+</StackPane>

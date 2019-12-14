@@ -18,7 +18,7 @@ public class Server {
 
 	public Server() {
 		try {
-			server = new ServerSocket(5010); 
+			server = new ServerSocket(5011); 
 			while(true) {
 				Player player1= new Player(server.accept(), 'B');
 				players.add(player1);
