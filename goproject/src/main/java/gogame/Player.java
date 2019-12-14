@@ -25,9 +25,9 @@ public class Player implements Runnable{
     	try {
     		input = new ObjectInputStream(socket.getInputStream());
             output = new ObjectOutputStream(socket.getOutputStream());
-            for (Player someplayer : Server.players) {
+            /*for (Player someplayer : Server.players) {
                 someplayer.output.writeObject("1");
-            }
+            }*/
             
             while(true) {
             	@SuppressWarnings("unchecked")
@@ -70,9 +70,9 @@ public class Player implements Runnable{
                     }
             		           	
             	}	
-            	else if(whatChoosen.contentEquals("klikniety")) {
+            	else if(whatChoosen.contentEquals("click")) {
             		for (Player someplayer : Server.players) {
-                        someplayer.output.writeObject("klikniety");
+                        someplayer.output.writeObject("T");
                     }
             		System.out.println("klikniety doszedl do serwera");
             	}

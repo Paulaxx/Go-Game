@@ -72,15 +72,15 @@ public class Client extends Application { //extends JFrame implements ActionList
 	public void start(Stage primaryStage) throws Exception {
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(this.getClass().getResource("/fxml/StackPaneWindow.fxml"));
+		loader.setLocation(this.getClass().getResource("/fxml/GameBorder9.fxml"));
 		StackPane stackPane = loader.load();
-		
 		
 		Scene scene = new Scene(stackPane);
 		
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Go Game");
 		primaryStage.show();
+		//button1.setVisible(false);
 		
 	}
 	
@@ -132,11 +132,11 @@ public static void main(String[] args) throws IOException{
 		//Client client = new Client();
 		//client.setVisible(true);	
 	try {
-        Socket = new Socket("localhost", 5010);
+        Socket = new Socket("localhost", 5011);
         out = new ObjectOutputStream(Socket.getOutputStream());
-        launch(args);
         ServerConnection servenConn = new ServerConnection(Socket);
         new Thread(servenConn).start();
+        launch(args);
     } 
     catch(IOException ex) {
     	System.out.println("No I/O");
