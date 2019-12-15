@@ -19,6 +19,7 @@ public class ServerConnection implements Runnable{
     private ObjectInputStream in;
     Parent container;
     Controller controller;
+    static FXMLLoader loader;
     
 	public ServerConnection(Socket s) {
 		server=s;
@@ -33,22 +34,25 @@ public class ServerConnection implements Runnable{
 	@Override
 	public void run() {
 		try {
+			loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("/fxml/GameBorder9.fxml"));
 			try {
-				container=Client.loader.load();
-				controller=Client.loader.getController();
+				container=loader.load();
+				controller=loader.getController();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
 			while(true) {
 				String fromSocket = (String)in.readObject();
 				System.out.println(fromSocket+"powinien zniknac pionek");
 				
-				/*Platform.runLater(new Runnable() {
+				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						controller.buttonb().setVisible(false);
+						controller.button1.setVisible(false);
 					}
-				});*/
+				});
 				
 				System.out.println(fromSocket+"zniknal?");
 			}
