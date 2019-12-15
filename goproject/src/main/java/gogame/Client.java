@@ -25,6 +25,7 @@ public class Client extends Application { //extends JFrame implements ActionList
 	JMenuItem pas, movee, size, bot, F5;
 	static String toSocket, Size, Bot;
 	static JLabel label;
+	static FXMLLoader loader;
 	
 	public Client(){
 		/*setTitle("Go Game");
@@ -71,7 +72,7 @@ public class Client extends Application { //extends JFrame implements ActionList
 	
 	public void start(Stage primaryStage) throws Exception {
 		
-		FXMLLoader loader = new FXMLLoader();
+		loader = new FXMLLoader();
 		loader.setLocation(this.getClass().getResource("/fxml/GameBorder9.fxml"));
 		StackPane stackPane = loader.load();
 		
