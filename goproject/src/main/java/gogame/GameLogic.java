@@ -2,15 +2,15 @@ package gogame;
 
 public class GameLogic implements Logic {
 
-	int size=9,breath_count=0;
+    int white_score=0,black_score=0,size=9,breath_count=0,breath_count1=-1,breath_count2=-1,breath_count3=-1,breath_count4=-1;
+	String[][] Board = new String[size+1][size+1];
+	String[][] copyBoard = new String[size+1][size+1];
+	String actualColor="black",opponentColor="white",curColor,empty="";
 	
 	public GameLogic(int size) {
 		 this.size = size;
 	}
 	
-	public String[][] Board = new String[size+1][size+1];
-	public String[][] copyBoard = new String[size+1][size+1];
-	public String actualColor="white",opponentColor="black",empty="";
 	
 	@Override
 	public void resetBoard() {
@@ -79,33 +79,86 @@ public class GameLogic implements Logic {
 		
 	}
 	
-	public boolean CanYouInsert(int x,int y) {
+     public boolean CanYouInsert(int x,int y) {
+		
+		breath_count1=-1;
+		breath_count2=-1;
+		breath_count3=-1;
+		breath_count4=-1;
 		
 		if(Board[x][y].equals("empty")) {
+			Board[x][y]="check";
 			
-			
-			if(HowManyBreaths(x,y) == 0) {
+			if(HowManyBreaths(x,y) == 0) {	
+				if(Board[x + 1][y].equals(opponentColor)) {
+					breath_count1=0;
+					breath_count1+=ChainBreaths(x+1,y,opponentColor);
+					//System.out.println("----  " + breath_count1);	
+				}
+				if(Board[x - 1][y].equals(opponentColor)) {
+					breath_count2=0;
+					breath_count2+=ChainBreaths(x-1,y,opponentColor);
+					//System.out.println("----  " + breath_count2);		
+				}
+				if(Board[x][y + 1].equals(opponentColor)) {
+					breath_count3=0;
+					breath_count3+=ChainBreaths(x,y+1,opponentColor);
+					//System.out.println("----  " + breath_count3);		
+				}
+				if(Board[x][y - 1].equals(opponentColor)) {
+					breath_count4=0;
+					breath_count4+=ChainBreaths(x,y-1,opponentColor);
+					//System.out.println("----  " + breath_count4);					
+				}
 				
-				if(CanTakeOpponentChain(x+1,y) == true || CanTakeOpponentChain(x-1,y) == true || CanTakeOpponentChain(x,y+1) == true || CanTakeOpponentChain(x,y-1) == true) {
+				if(breath_count1 == 0 || breath_count2 == 0 || breath_count3 == 0 || breath_count4 == 0) {
 					
+					breath_count1=0;
+					breath_count2=0;
+					breath_count3=0;
+					breath_count4=0;
+					Board[x][y]="empty";
 					return true;	
 				}
 				else {
-					
+					breath_count1=0;
+					breath_count2=0;
+					breath_count3=0;
+					breath_count4=0;
 					if(Board[x + 1][y].equals(opponentColor) && Board[x][y + 1].equals(opponentColor) && Board[x - 1][y].equals(opponentColor) && Board[x][y - 1].equals(opponentColor)) {
-						
+						Board[x][y]="empty";
 						return false;
 					}
 					else
 					{
-						changeColor();
-						if(CanTakeOpponentChain(x,y) == true) {
-							changeColor();
-							return false;
-							
+						if(Board[x + 1][y].equals(actualColor)) {
+							breath_count1=0;
+							breath_count1+=ChainBreaths(x+1,y,actualColor);
+						}
+						if(Board[x - 1][y].equals(actualColor)) {
+							breath_count2=0;
+							breath_count2+=ChainBreaths(x-1,y,actualColor);
+						}
+						if(Board[x][y + 1].equals(actualColor)) {
+							breath_count3=0;
+							breath_count3+=ChainBreaths(x,y+1,actualColor);
+						}
+						if(Board[x][y - 1].equals(actualColor)) {
+							breath_count4=0;
+							breath_count4+=ChainBreaths(x,y-1,actualColor);
+						}
+						breath_count = breath_count1+breath_count2+breath_count3+breath_count4;
+						breath_count1=0;
+						breath_count2=0;
+						breath_count3=0;
+						breath_count4=0;
+						if(breath_count == 0) {
+							Board[x][y]="empty";
+							return false;	
 						}
 						else {
-							changeColor();
+							Board[x][y]="empty";
+							breath_count = 0;
 							return true;
 						}
 						
@@ -116,7 +169,7 @@ public class GameLogic implements Logic {
 				
 			}
 			else {
-				
+				Board[x][y]="empty";
 				return true;
 				
 			}
@@ -144,153 +197,270 @@ public class GameLogic implements Logic {
 		return breath;
 	}
 	
-	public int ChainBreaths(int x,int y) {
-	
-		String curColor = copyBoard[x][y];
+     public int HowManyBreathsCopy(int x,int y) {
 		
-		if(copyBoard[x+1][y].equals(curColor) ) {
-			
-			copyBoard[x][y]="checked";
-			if(HowManyBreaths(x,y) > 0) {
-				
-				return 1;
-				// nie do poprawy
-			}
-				
-			return ChainBreaths(x+1,y);	
-			
-		}
-		 if(copyBoard[x-1][y].equals(curColor) ) {
-			
-			 copyBoard[x][y]="checked";
-			if(HowManyBreaths(x,y) > 0) {
-					
-				return 1;
-			}
-					
-			return ChainBreaths(x-1,y);	
-			
-			
-		}
-		 if(copyBoard[x][y+1].equals(curColor) ) {
-				
-			 copyBoard[x][y]="checked";
-			if(HowManyBreaths(x,y) > 0) {
-					
-				return 1;
-			}
-					
-			return ChainBreaths(x,y+1);	
-			
-			
-		}
-		 if(copyBoard[x][y-1].equals(curColor) ) {
-				
-			 copyBoard[x][y]="checked";
-			if(HowManyBreaths(x,y) > 0) {
-					
-				return 1;
-			}
-					
-			return ChainBreaths(x,y-1);	
-			
-			
-		}
-		 return 0;
+		int breath=0;
 		
+		if(copyBoard[x + 1][y].equals("empty"))
+			breath++;
+		if(copyBoard[x - 1][y].equals("empty"))
+			breath++;
+		if(copyBoard[x][y + 1].equals("empty"))
+			breath++;
+		if(copyBoard[x][y - 1].equals("empty"))
+			breath++;
+		
+		return breath;
 	}
 	
-	public boolean CanTakeOpponentChain(int x,int y) {
-		
-		
-		CopyTheBoard();
-		copyBoard[x][y]="checking";
-		if(CanTakeOpponentChain2(x,y) == 1) {
-			breath_count=0;
-			return true;
-		}
-		else {
-			breath_count=0;
-			return false;
-		}
-		
-	}
 	
-	public int CanTakeOpponentChain2(int x,int y) {
-		
-		if(copyBoard[x+1][y].equals(opponentColor)) {
-		
-			breath_count+=HowManyBreaths(x+1,y);
-			if(breath_count > 0) {
-			
-				return 0;
-			}
-			else {
-				copyBoard[x+1][y]="checked";
-				return  CanTakeOpponentChain2(x+1,y) + CanTakeOpponentChain2(x-1,y) + CanTakeOpponentChain2(x,y+1) + CanTakeOpponentChain2(x,y-1);
-			}
-		}
-		
-		if(breath_count > 0) {
-			return 0;
-		}
-	
-		if(copyBoard[x-1][y].equals(opponentColor)) {
-		
-			breath_count+=HowManyBreaths(x-1,y);
-			if(breath_count > 0) {
-			
-				return 0;
-			}
-			else {
-				copyBoard[x-1][y]="checked";
-				return CanTakeOpponentChain2(x+1,y) + CanTakeOpponentChain2(x-1,y) + CanTakeOpponentChain2(x,y+1) + CanTakeOpponentChain2(x,y-1);
-			}
-		}
-		
-		if(breath_count > 0) {
-			return 0;
-		}
-	
-		if(copyBoard[x][y+1].equals(opponentColor)) {
-		
-			breath_count+=HowManyBreaths(x,y+1);
-			if(breath_count > 0) {
-			
-				return 0;
-			}
-			else {
-				copyBoard[x][y+1]="checked";
-				return CanTakeOpponentChain2(x+1,y) + CanTakeOpponentChain2(x-1,y) + CanTakeOpponentChain2(x,y+1) + CanTakeOpponentChain2(x,y-1);
-			}
-		}
-		
-		if(breath_count > 0) {
-			return 0;
-		}
-		
-		if(copyBoard[x][y-1].equals(opponentColor)) {
-		
-			breath_count+=HowManyBreaths(x,y-1);
-			if(breath_count > 0) {
-			
-				return 0;
-			}
-			else {
-				copyBoard[x][y-1]="checked";
-				return CanTakeOpponentChain2(x+1,y) + CanTakeOpponentChain2(x-1,y) + CanTakeOpponentChain2(x,y+1) + CanTakeOpponentChain2(x,y-1);
-			}
-		}
-		
-		if(breath_count > 0) {
-			return 0;
-		}
-		
-	return 1;
-		
-		
-		
-	}
+    public int ChainBreaths(int x,int y,String color) {
+    		
+ 		CopyTheBoard();
+ 		curColor = color;
+ 		return ChainBreaths2(x,y);
+ 		
+ 	}
+ 	
+ 	public int ChainBreaths2(int x,int y) {
+ 		
+ 		if(!copyBoard[x + 1][y].equals(curColor) && !copyBoard[x - 1][y].equals(curColor) && !copyBoard[x][y + 1].equals(curColor) && !copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y);
+ 			//PUSTY
+ 		}
+ 		else if(copyBoard[x + 1][y].equals(curColor) && !copyBoard[x - 1][y].equals(curColor) && !copyBoard[x][y + 1].equals(curColor) && !copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x+1,y);
+ 			//A
+ 		}
+ 		else if(!copyBoard[x + 1][y].equals(curColor) && copyBoard[x - 1][y].equals(curColor) && !copyBoard[x][y + 1].equals(curColor) && !copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x-1,y);
+ 			//B
+ 		}
+ 		else if(!copyBoard[x + 1][y].equals(curColor) && !copyBoard[x - 1][y].equals(curColor) && copyBoard[x][y + 1].equals(curColor) && !copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x,y+1);
+ 			//C
+ 		}
+ 		else if(!copyBoard[x + 1][y].equals(curColor) && !copyBoard[x - 1][y].equals(curColor) && !copyBoard[x][y + 1].equals(curColor) && copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x,y-1);
+ 			//D
+ 		}
+ 		else if(copyBoard[x + 1][y].equals(curColor) && copyBoard[x - 1][y].equals(curColor) && !copyBoard[x][y + 1].equals(curColor) && !copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x+1,y) + ChainBreaths2(x-1,y);
+ 			//AB
+ 		}
+ 		else if(copyBoard[x + 1][y].equals(curColor) && !copyBoard[x - 1][y].equals(curColor) && copyBoard[x][y + 1].equals(curColor) && !copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x+1,y) + ChainBreaths2(x,y+1);
+ 			//AC
+ 		}
+ 		else if(copyBoard[x + 1][y].equals(curColor) && !copyBoard[x - 1][y].equals(curColor) && !copyBoard[x][y + 1].equals(curColor) && copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x+1,y) + ChainBreaths2(x,y-1);
+ 			//AD
+ 		}
+ 		else if(!copyBoard[x + 1][y].equals(curColor) && copyBoard[x - 1][y].equals(curColor) && copyBoard[x][y + 1].equals(curColor) && !copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x-1,y) + ChainBreaths2(x,y+1);
+ 			//BC
+ 		}
+ 		else if(!copyBoard[x + 1][y].equals(curColor) && copyBoard[x - 1][y].equals(curColor) && !copyBoard[x][y + 1].equals(curColor) && copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x-1,y) + ChainBreaths2(x,y-1);
+ 			//BD	
+ 		}
+ 		else if(!copyBoard[x + 1][y].equals(curColor) && !copyBoard[x - 1][y].equals(curColor) && copyBoard[x][y + 1].equals(curColor) && copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x,y+1) + ChainBreaths2(x,y-1);
+ 			//CD	
+ 		}
+ 		else if(copyBoard[x + 1][y].equals(curColor) && copyBoard[x - 1][y].equals(curColor) && copyBoard[x][y + 1].equals(curColor) && !copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x+1,y) + ChainBreaths2(x-1,y) + ChainBreaths2(x,y+1);
+ 			//ABC
+ 		}
+ 		else if(copyBoard[x + 1][y].equals(curColor) && copyBoard[x - 1][y].equals(curColor) && !copyBoard[x][y + 1].equals(curColor) && copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x+1,y) + ChainBreaths2(x-1,y) + ChainBreaths2(x,y-1);
+ 			//ABD
+ 		}
+ 		else if(copyBoard[x + 1][y].equals(curColor) && !copyBoard[x - 1][y].equals(curColor) && copyBoard[x][y + 1].equals(curColor) && copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x+1,y) + ChainBreaths2(x,y+1) + ChainBreaths2(x,y-1);
+ 			//ACD
+ 		}
+ 		else if(!copyBoard[x + 1][y].equals(curColor) && copyBoard[x - 1][y].equals(curColor) && copyBoard[x][y + 1].equals(curColor) && copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x-1,y) + ChainBreaths2(x,y+1) + ChainBreaths2(x,y-1);
+ 			//BCD
+ 		}
+ 		else if(copyBoard[x + 1][y].equals(curColor) && copyBoard[x - 1][y].equals(curColor) && copyBoard[x][y + 1].equals(curColor) && copyBoard[x][y - 1].equals(curColor) ){
+ 			copyBoard[x][y]="checked";
+ 			return HowManyBreathsCopy(x,y) + ChainBreaths2(x+1,y) + ChainBreaths2(x-1,y)+ ChainBreaths2(x,y+1) + ChainBreaths2(x,y-1);
+ 			//ABCD
+ 		}
+ 		return 0;
+ 	}
+ 	
+ 	public void Insert(int x,int y) {
+ 		int wynik;
+ 		
+ 		if(CanYouInsert(x,y) == true){
+
+ 			System.out.println("Inserted");
+ 			Board[x][y]="check";
+ 			
+ 			if(Board[x + 1][y].equals(opponentColor) ) {
+ 				
+ 				if(ChainBreaths(x+1,y,opponentColor) == 0) {
+ 					
+ 				wynik=DeleteDeadStones(x+1,y,opponentColor);
+ 				UpdateScore(wynik);
+ 				}
+ 			}
+ 			if(Board[x - 1][y].equals(opponentColor) ) {
+ 				if(ChainBreaths(x-1,y,opponentColor) == 0) {
+ 					
+ 				wynik=DeleteDeadStones(x-1,y,opponentColor);
+ 				UpdateScore(wynik);	
+ 				}
+ 			}
+ 			if(Board[x][y + 1].equals(opponentColor) ) {
+ 				if(ChainBreaths(x,y+1,opponentColor) == 0) {
+ 					
+ 				wynik=DeleteDeadStones(x,y+1,opponentColor);
+ 				UpdateScore(wynik);	
+ 				}
+ 			}
+ 			if(Board[x][y - 1].equals(opponentColor) ) {
+ 				if(ChainBreaths(x,y-1,opponentColor) == 0) {
+ 				
+ 				wynik=DeleteDeadStones(x,y-1,opponentColor);
+ 				UpdateScore(wynik);	
+ 				}
+ 			}
+ 			Board[x][y]=actualColor;
+ 			changeColor();
+ 			
+ 		}
+ 		else {
+ 			
+ 			System.out.println(x + " " + y +"Not Inserted");
+ 		}
+ 		
+ 	}
+ 		
+ 	public void UpdateScore(int wynik) {
+ 		
+ 		if(actualColor.equals("white")) {
+ 			
+ 			white_score+=wynik;
+ 		}
+ 		else if(actualColor.equals("black")) {
+ 			
+ 			black_score+=wynik;
+ 		}
+ 		else
+ 			System.out.println("PROBLEM");
+ 	}		
+ 	
+ 	public int DeleteDeadStones(int x,int y,String color) {
+ 		
+ 		
+ 		curColor = color;
+ 		return DeleteDeadStones2(x,y);
+ 		
+ 	}
+ 	
+    public int DeleteDeadStones2(int x,int y) {
+ 		
+ 		if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1;
+ 			//PUSTY
+ 		}
+ 		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x+1,y);
+ 			//A
+ 		}
+ 		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x-1,y);
+ 			//B
+ 		}
+ 		else if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x,y+1);
+ 			//C
+ 		}
+ 		else if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x,y-1);
+ 			//D
+ 		}
+ 		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y);
+ 			//AB
+ 		}
+ 		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x,y+1);
+ 			//AC
+ 		}
+ 		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x,y-1);
+ 			//AD
+ 		}
+ 		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y+1);
+ 			//BC
+ 		}
+ 		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y-1);
+ 			//BD	
+ 		}
+ 		else if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
+ 			//CD	
+ 		}
+ 		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y+1);
+ 			//ABC
+ 		}
+ 		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y-1);
+ 			//ABD
+ 		}
+ 		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
+ 			//ACD
+ 		}
+ 		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
+ 			//BCD
+ 		}
+ 		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
+ 			Board[x][y]="empty";
+ 			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y)+ DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
+ 			//ABCD
+ 		}
+ 		return 0;
+ 	}
 	
 
 }
