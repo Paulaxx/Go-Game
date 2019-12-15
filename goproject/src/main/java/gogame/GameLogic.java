@@ -3,8 +3,8 @@ package gogame;
 public class GameLogic implements Logic {
 
     int white_score=0,black_score=0,size=9,breath_count=0,breath_count1=-1,breath_count2=-1,breath_count3=-1,breath_count4=-1;
-	String[][] Board = new String[size+1][size+1];
-	String[][] copyBoard = new String[size+1][size+1];
+	String[][] Board = new String[size+2][size+2];
+	String[][] copyBoard = new String[size+2][size+2];
 	String actualColor="black",opponentColor="white",curColor,empty="";
 	
 	public GameLogic(int size) {
@@ -15,10 +15,10 @@ public class GameLogic implements Logic {
 	@Override
 	public void resetBoard() {
 		
-		for(int i=0;i<size+1;i++) {
-			for(int j=0;j<size+1;j++) {
+		for(int i=0;i<size+2;i++) {
+			for(int j=0;j<size+2;j++) {
 			 
-				if(i == 0 || j == 0 || i == size || j == size) {
+				if(i == 0 || j == 0 || i == size+1 || j == size+1) {
 					Board[i][j] = "border";	
 				}
 				else {
@@ -32,8 +32,8 @@ public class GameLogic implements Logic {
 	@Override
 	public void showBoard() {
 		
-		for(int i=0;i<size+1;i++) {
-			for(int j=0;j<size+1;j++) {
+		for(int i=0;i<size+2;i++) {
+			for(int j=0;j<size+2;j++) {
 			 
 			System.out.println(Board[i][j]);
 			}
@@ -67,9 +67,9 @@ public class GameLogic implements Logic {
 	public void CopyTheBoard() {
 		
 		int i,j;
-		for(i=0;i<size+1;i++) {
+		for(i=0;i<size+2;i++) {
 			
-			for(j=0;j<size+1;j++) {
+			for(j=0;j<size+2;j++) {
 				
 				copyBoard[i][j]=Board[i][j];
 				
@@ -365,8 +365,6 @@ public class GameLogic implements Logic {
  			
  			black_score+=wynik;
  		}
- 		else
- 			System.out.println("PROBLEM");
  	}		
  	
  	public int DeleteDeadStones(int x,int y,String color) {
