@@ -17,11 +17,12 @@ public class ServerConnection implements Runnable{
 
 	private Socket server;
     private ObjectInputStream in;
-    Parent container;
-    Controller controller;
-    static FXMLLoader loader;
+    //Parent container;
+    //Controller controller;
+    //FXMLLoader loader;
+    Client client;
     
-	public ServerConnection(Socket s) {
+    public ServerConnection(Socket s) {
 		server=s;
 		try {
 			in = new ObjectInputStream(Client.Socket.getInputStream());
@@ -30,18 +31,19 @@ public class ServerConnection implements Runnable{
 		}
 	}
 
+
 	
 	@Override
 	public void run() {
 		try {
-			loader = new FXMLLoader();
+			/*loader = new FXMLLoader();
 			loader.setLocation(this.getClass().getResource("/fxml/GameBorder9.fxml"));
 			try {
 				container=loader.load();
 				controller=loader.getController();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 			
 			while(true) {
 				String fromSocket = (String)in.readObject();
@@ -50,7 +52,7 @@ public class ServerConnection implements Runnable{
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						controller.button1.setVisible(false);
+						Client.controller.buttonb();
 					}
 				});
 				
