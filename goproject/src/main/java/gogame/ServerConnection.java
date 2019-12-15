@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,7 +17,6 @@ public class ServerConnection implements Runnable{
 
 	private Socket server;
     private ObjectInputStream in;
-    FXMLLoader loader = new FXMLLoader();
     Parent container;
     Controller controller;
     
@@ -27,24 +27,29 @@ public class ServerConnection implements Runnable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	
 	@Override
 	public void run() {
 		try {
+			try {
+				container=Client.loader.load();
+				controller=Client.loader.getController();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			while(true) {
 				String fromSocket = (String)in.readObject();
 				System.out.println(fromSocket+"powinien zniknac pionek");
-				loader.setLocation(getClass().getResource("/fxml/GameBorder9.fxml"));
-				try {
-					container=loader.load();
-					controller=loader.getController();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				controller.buttonb().setVisible(false);
+				
+				/*Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						controller.buttonb().setVisible(false);
+					}
+				});*/
+				
 				System.out.println(fromSocket+"zniknal?");
 			}
 		}
