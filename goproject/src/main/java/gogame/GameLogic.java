@@ -1,19 +1,23 @@
 package gogame;
 
-public class GameLogic implements Logic {
+import java.util.ArrayList;
 
-    int white_score=0,black_score=0,size=9,breath_count=0,breath_count1=-1,breath_count2=-1,breath_count3=-1,breath_count4=-1;
-	String[][] Board = new String[size+2][size+2];
-	String[][] copyBoard = new String[size+2][size+2];
-	String actualColor="black",opponentColor="white",curColor,empty="";
+public class GameLogic  {
+
+    static int white_score=0,black_score=0,size=9,breath_count=0,breath_count1=-1,breath_count2=-1,breath_count3=-1,breath_count4=-1;
+	static String[][] Board = new String[size+2][size+2];
+	static String[][] copyBoard = new String[size+2][size+2];
+	static String actualColor="black",opponentColor="white",curColor,empty="";
+	
+	static ArrayList<String> message = new ArrayList<>();
 	
 	public GameLogic(int size) {
 		 this.size = size;
 	}
 	
 	
-	@Override
-	public void resetBoard() {
+	//@Override
+	 static public void resetBoard() {
 		
 		for(int i=0;i<size+2;i++) {
 			for(int j=0;j<size+2;j++) {
@@ -29,8 +33,8 @@ public class GameLogic implements Logic {
 
 	}
 
-	@Override
-	public void showBoard() {
+	//@Override
+	static public void showBoard() {
 		
 		for(int i=0;i<size+2;i++) {
 			for(int j=0;j<size+2;j++) {
@@ -45,8 +49,8 @@ public class GameLogic implements Logic {
 
 	}
 
-	@Override
-	public void changeColor() {
+	//@Override
+	static public void changeColor() {
 		
 			
 			if(actualColor == "white") {
@@ -63,8 +67,8 @@ public class GameLogic implements Logic {
 
 	}
 
-	@Override
-	public void CopyTheBoard() {
+	//@Override
+	static public void CopyTheBoard() {
 		
 		int i,j;
 		for(i=0;i<size+2;i++) {
@@ -79,7 +83,7 @@ public class GameLogic implements Logic {
 		
 	}
 	
-     public boolean CanYouInsert(int x,int y) {
+    static public boolean CanYouInsert(int x,int y) {
 		
 		breath_count1=-1;
 		breath_count2=-1;
@@ -175,13 +179,12 @@ public class GameLogic implements Logic {
 			}
 		}
 		else {	
-			
 			return false;		
 		}
 		
 	}
 	
-	public int HowManyBreaths(int x,int y) {
+	static public int HowManyBreaths(int x,int y) {
 		
 		int breath=0;
 		
@@ -197,7 +200,7 @@ public class GameLogic implements Logic {
 		return breath;
 	}
 	
-     public int HowManyBreathsCopy(int x,int y) {
+    static public int HowManyBreathsCopy(int x,int y) {
 		
 		int breath=0;
 		
@@ -214,15 +217,15 @@ public class GameLogic implements Logic {
 	}
 	
 	
-    public int ChainBreaths(int x,int y,String color) {
+    static public int ChainBreaths(int x,int y,String color) {
     		
- 		CopyTheBoard();
+ 		GameLogic.CopyTheBoard();
  		curColor = color;
  		return ChainBreaths2(x,y);
  		
  	}
  	
- 	public int ChainBreaths2(int x,int y) {
+ 	static public int ChainBreaths2(int x,int y) {
  		
  		if(!copyBoard[x + 1][y].equals(curColor) && !copyBoard[x - 1][y].equals(curColor) && !copyBoard[x][y + 1].equals(curColor) && !copyBoard[x][y - 1].equals(curColor) ){
  			copyBoard[x][y]="checked";
@@ -307,10 +310,14 @@ public class GameLogic implements Logic {
  		return 0;
  	}
  	
- 	public void Insert(int x,int y) {
+ 	static public void Insert(int x,int y) {
  		int wynik;
  		
  		if(CanYouInsert(x,y) == true){
+ 			message.add("T");
+ 			message.add(actualColor);
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
 
  			System.out.println("Inserted");
  			Board[x][y]="check";
@@ -349,13 +356,13 @@ public class GameLogic implements Logic {
  			
  		}
  		else {
- 			
+ 			message.add("N");
  			System.out.println(x + " " + y +"Not Inserted");
  		}
  		
  	}
  		
- 	public void UpdateScore(int wynik) {
+ 	static public void UpdateScore(int wynik) {
  		
  		if(actualColor.equals("white")) {
  			
@@ -367,7 +374,7 @@ public class GameLogic implements Logic {
  		}
  	}		
  	
- 	public int DeleteDeadStones(int x,int y,String color) {
+ 	static public int DeleteDeadStones(int x,int y,String color) {
  		
  		
  		curColor = color;
@@ -375,85 +382,117 @@ public class GameLogic implements Logic {
  		
  	}
  	
-    public int DeleteDeadStones2(int x,int y) {
+    static public int DeleteDeadStones2(int x,int y) {
  		
  		if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1;
  			//PUSTY
  		}
  		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x+1,y);
  			//A
  		}
  		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x-1,y);
  			//B
  		}
  		else if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x,y+1);
  			//C
  		}
  		else if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x,y-1);
  			//D
  		}
  		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y);
  			//AB
  		}
  		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x,y+1);
  			//AC
  		}
  		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x,y-1);
  			//AD
  		}
  		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y+1);
  			//BC
  		}
  		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y-1);
  			//BD	
  		}
  		else if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
  			//CD	
  		}
  		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y+1);
  			//ABC
  		}
  		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y-1);
  			//ABD
  		}
  		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
  			//ACD
  		}
  		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
  			//BCD
  		}
  		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
+ 			message.add(Integer.toString(x));
+ 			message.add(Integer.toString(y));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y)+ DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
  			//ABCD
  		}

@@ -37,6 +37,8 @@ public class Player implements Runnable{
         		
             	if(whatChoosen.contentEquals("size")) {
             		Server.size=Integer.parseInt(fromSocket.get(1));
+            		
+            		GameLogic gamelogic = new GameLogic(Server.size);
             		 for (Player someplayer : Server.players) {
                          someplayer.output.writeObject(color+"size"+Server.size);
                      }
@@ -78,9 +80,16 @@ public class Player implements Runnable{
             		sent.add("black");
             		sent.add(fromSocket.get(1));
             		sent.add(fromSocket.get(2));
+            		
+            		GameLogic.Insert(Integer.parseInt(fromSocket.get(1)),Integer.parseInt(fromSocket.get(2)));
+            		 
+            		System.out.println(GameLogic.message);
             		for (Player someplayer : Server.players) {
-                        someplayer.output.writeObject(sent);
+                        someplayer.output.writeObject(GameLogic.message);
                     }
+            		GameLogic.message.clear();
+            		System.out.println(GameLogic.message);
+            		
             	}
             }
         } 

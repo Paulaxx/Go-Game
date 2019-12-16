@@ -38,8 +38,6 @@ public class Server {
 	
 	public static void main(String[] args){
 		
-		GameLogic gamelogic = new GameLogic(9);
-		gamelogic.resetBoard();
 		new Server();
 			
 	}	
