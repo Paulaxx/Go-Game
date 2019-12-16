@@ -9,7 +9,7 @@ public class BorderTest {
 	@Test
 	public void Test() {
 	
-		GameLogic gamelogic = new GameLogic(9);
+		GameLogic gamelogic = new GameLogic();
 		gamelogic.resetBoard();
 		String output1 = gamelogic.Board[0][0];
 		String output2 = gamelogic.Board[10][0];

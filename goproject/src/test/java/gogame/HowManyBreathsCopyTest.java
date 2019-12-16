@@ -9,7 +9,7 @@ public class HowManyBreathsCopyTest {
 	@Test
 	public void Test() {
 	
-		GameLogic gamelogic = new GameLogic(9);
+		GameLogic gamelogic = new GameLogic();
 		gamelogic.resetBoard();
 		gamelogic.CopyTheBoard();
 		int i,j,expected=2;

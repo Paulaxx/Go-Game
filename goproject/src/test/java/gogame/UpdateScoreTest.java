@@ -9,7 +9,7 @@ public class UpdateScoreTest {
 	@Test
 	public void Test() {
 	
-		GameLogic gamelogic = new GameLogic(9);
+		GameLogic gamelogic = new GameLogic();
 		int bialywynik1=0,bialywynik2=0,czarnywynik1=0,czarnywynik2=0;
 		
 		bialywynik1=gamelogic.white_score;

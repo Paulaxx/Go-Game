@@ -9,7 +9,7 @@ public class CopyBoardTest {
 	@Test
 	public void Test() {
 	
-		GameLogic gamelogic = new GameLogic(9);
+		GameLogic gamelogic = new GameLogic();
 		int i=0,j=0;
 		gamelogic.resetBoard();
 		gamelogic.CopyTheBoard();

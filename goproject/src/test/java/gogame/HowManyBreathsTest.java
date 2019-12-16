@@ -9,7 +9,7 @@ public class HowManyBreathsTest {
 	@Test
 	public void Test() {
 	
-		GameLogic gamelogic = new GameLogic(9);
+		GameLogic gamelogic = new GameLogic();
 		gamelogic.resetBoard();
 		int i,j,expected=2;
 		

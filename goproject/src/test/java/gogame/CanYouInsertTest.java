@@ -9,10 +9,11 @@ public class CanYouInsertTest {
 	@Test
 	public void Test() {
 	
-		GameLogic gamelogic = new GameLogic(9);
+		GameLogic gamelogic = new GameLogic();
 		
 		gamelogic.resetBoard();
 		gamelogic.CopyTheBoard();
+		gamelogic.size = 9;
 		
 		gamelogic.Board[2][1]= "black";
 		gamelogic.Board[3][1]= "black";

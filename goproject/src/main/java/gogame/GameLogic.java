@@ -2,22 +2,22 @@ package gogame;
 
 import java.util.ArrayList;
 
-public class GameLogic  {
+public class GameLogic implements Logic {
 
-    static int white_score=0,black_score=0,size=9,breath_count=0,breath_count1=-1,breath_count2=-1,breath_count3=-1,breath_count4=-1;
-	static String[][] Board = new String[size+2][size+2];
-	static String[][] copyBoard = new String[size+2][size+2];
-	static String actualColor="black",opponentColor="white",curColor,empty="";
+    public int white_score=0,black_score=0,size=9,breath_count=0,breath_count1=-1,breath_count2=-1,breath_count3=-1,breath_count4=-1;
+	public String[][] Board = new String[size+2][size+2];
+	public String[][] copyBoard = new String[size+2][size+2];
+	public String actualColor="black",opponentColor="white",curColor,empty="";
 	
-	static ArrayList<String> message = new ArrayList<>();
+	public ArrayList<String> message = new ArrayList<>();
 	
-	public GameLogic(int size) {
-		 this.size = size;
+	public GameLogic() {
+
 	}
 	
 	
-	//@Override
-	 static public void resetBoard() {
+	@Override
+	  public void resetBoard() {
 		
 		for(int i=0;i<size+2;i++) {
 			for(int j=0;j<size+2;j++) {
@@ -33,8 +33,8 @@ public class GameLogic  {
 
 	}
 
-	//@Override
-	static public void showBoard() {
+	@Override
+	  public void showBoard() {
 		
 		for(int i=0;i<size+2;i++) {
 			for(int j=0;j<size+2;j++) {
@@ -49,8 +49,8 @@ public class GameLogic  {
 
 	}
 
-	//@Override
-	static public void changeColor() {
+	@Override
+	 public void changeColor() {
 		
 			
 			if(actualColor == "white") {
@@ -67,8 +67,8 @@ public class GameLogic  {
 
 	}
 
-	//@Override
-	static public void CopyTheBoard() {
+	@Override
+	public void CopyTheBoard() {
 		
 		int i,j;
 		for(i=0;i<size+2;i++) {
@@ -83,7 +83,7 @@ public class GameLogic  {
 		
 	}
 	
-    static public boolean CanYouInsert(int x,int y) {
+    public boolean CanYouInsert(int x,int y) {
 		
 		breath_count1=-1;
 		breath_count2=-1;
@@ -184,7 +184,7 @@ public class GameLogic  {
 		
 	}
 	
-	static public int HowManyBreaths(int x,int y) {
+	public int HowManyBreaths(int x,int y) {
 		
 		int breath=0;
 		
@@ -200,7 +200,7 @@ public class GameLogic  {
 		return breath;
 	}
 	
-    static public int HowManyBreathsCopy(int x,int y) {
+    public int HowManyBreathsCopy(int x,int y) {
 		
 		int breath=0;
 		
@@ -217,15 +217,15 @@ public class GameLogic  {
 	}
 	
 	
-    static public int ChainBreaths(int x,int y,String color) {
+    public int ChainBreaths(int x,int y,String color) {
     		
- 		GameLogic.CopyTheBoard();
+ 		CopyTheBoard();
  		curColor = color;
  		return ChainBreaths2(x,y);
  		
  	}
  	
- 	static public int ChainBreaths2(int x,int y) {
+ 	public int ChainBreaths2(int x,int y) {
  		
  		if(!copyBoard[x + 1][y].equals(curColor) && !copyBoard[x - 1][y].equals(curColor) && !copyBoard[x][y + 1].equals(curColor) && !copyBoard[x][y - 1].equals(curColor) ){
  			copyBoard[x][y]="checked";
@@ -310,7 +310,7 @@ public class GameLogic  {
  		return 0;
  	}
  	
- 	static public void Insert(int x,int y) {
+ 	 public void Insert(int x,int y) {
  		int wynik;
  		
  		if(CanYouInsert(x,y) == true){
@@ -362,7 +362,7 @@ public class GameLogic  {
  		
  	}
  		
- 	static public void UpdateScore(int wynik) {
+ 	 public void UpdateScore(int wynik) {
  		
  		if(actualColor.equals("white")) {
  			
@@ -374,7 +374,7 @@ public class GameLogic  {
  		}
  	}		
  	
- 	static public int DeleteDeadStones(int x,int y,String color) {
+ 	 public int DeleteDeadStones(int x,int y,String color) {
  		
  		
  		curColor = color;
@@ -382,7 +382,7 @@ public class GameLogic  {
  		
  	}
  	
-    static public int DeleteDeadStones2(int x,int y) {
+ 	 public int DeleteDeadStones2(int x,int y) {
  		
  		if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";

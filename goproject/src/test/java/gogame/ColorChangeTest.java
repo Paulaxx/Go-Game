@@ -9,7 +9,7 @@ public class ColorChangeTest {
 	@Test
 	public void Test() {
 	
-		GameLogic gamelogic = new GameLogic(9);
+		GameLogic gamelogic = new GameLogic();
 		String kolor1 = gamelogic.actualColor;
 		gamelogic.changeColor();
 		String kolor2 = gamelogic.actualColor;
