@@ -33,6 +33,7 @@ public class Player implements Runnable{
             	@SuppressWarnings("unchecked")
 				ArrayList<String> fromSocket = (ArrayList<String>)input.readObject();
             	String whatChoosen = fromSocket.get(0);
+            	System.out.println("Player"+fromSocket);
         		
             	if(whatChoosen.contentEquals("size")) {
             		Server.size=Integer.parseInt(fromSocket.get(1));
@@ -71,11 +72,15 @@ public class Player implements Runnable{
             		           	
             	}	
             	else if(whatChoosen.contentEquals("click")) {
-            		String sent = "T"+fromSocket.get(1)+fromSocket.get(2);
+            		//sprawdzanie czy mozna
+            		ArrayList<String> sent = new ArrayList<String>();
+            		sent.add("T");
+            		sent.add("black");
+            		sent.add(fromSocket.get(1));
+            		sent.add(fromSocket.get(2));
             		for (Player someplayer : Server.players) {
                         someplayer.output.writeObject(sent);
                     }
-            		System.out.println("klikniety doszedl do serwera");
             	}
             }
         } 

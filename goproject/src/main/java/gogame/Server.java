@@ -10,7 +10,6 @@ public class Server {
 	
 	static int size=9, bot, pas=0, x, y;
 	static String answer;
-    private static ExecutorService pool = Executors.newFixedThreadPool(200);
     static ArrayList<Player> players = new ArrayList<>();
 
    
@@ -19,6 +18,7 @@ public class Server {
 	public Server() {
 		try {
 			server = new ServerSocket(5011); 
+			ExecutorService pool = Executors.newFixedThreadPool(200);
 			while(true) {
 				Player player1= new Player(server.accept(), 'B');
 				players.add(player1);

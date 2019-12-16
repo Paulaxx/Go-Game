@@ -3,15 +3,9 @@ package gogame;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 public class ServerConnection implements Runnable{
 
@@ -46,12 +40,14 @@ public class ServerConnection implements Runnable{
 			}*/
 			
 			while(true) {
-				String fromSocket = (String)in.readObject();
+				@SuppressWarnings("unchecked")
+				ArrayList<String> fromSocket = (ArrayList<String>)in.readObject();
+				System.out.println("ServerConnection"+fromSocket);
 				
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						Client.controller.buttonb(fromSocket.charAt(1), fromSocket.charAt(2));
+						Client.controller.buttonb(fromSocket.get(1), fromSocket.get(2), fromSocket.get(3));
 					}
 				});
 			}

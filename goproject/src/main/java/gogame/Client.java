@@ -2,11 +2,9 @@ package gogame;
 import java.awt.event.ActionEvent;
 import java.io.*;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import java.net.*;
 import java.util.ArrayList;
@@ -84,8 +82,6 @@ public class Client extends Application { //extends JFrame implements ActionList
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Go Game");
 		primaryStage.show();
-		//button1.setVisible(false);
-		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
