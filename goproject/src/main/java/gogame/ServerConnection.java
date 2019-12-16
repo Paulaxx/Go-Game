@@ -47,16 +47,13 @@ public class ServerConnection implements Runnable{
 			
 			while(true) {
 				String fromSocket = (String)in.readObject();
-				System.out.println(fromSocket+"powinien zniknac pionek");
 				
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						Client.controller.buttonb();
+						Client.controller.buttonb(fromSocket.charAt(1), fromSocket.charAt(2));
 					}
 				});
-				
-				System.out.println(fromSocket+"zniknal?");
 			}
 		}
 		catch (Exception ex) {}

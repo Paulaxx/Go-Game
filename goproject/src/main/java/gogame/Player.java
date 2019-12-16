@@ -71,8 +71,9 @@ public class Player implements Runnable{
             		           	
             	}	
             	else if(whatChoosen.contentEquals("click")) {
+            		String sent = "T"+fromSocket.get(1)+fromSocket.get(2);
             		for (Player someplayer : Server.players) {
-                        someplayer.output.writeObject("T");
+                        someplayer.output.writeObject(sent);
                     }
             		System.out.println("klikniety doszedl do serwera");
             	}

@@ -29,6 +29,7 @@ public class GameBoard extends Application{
 		primaryStage.setTitle("Go Game");
 		primaryStage.show();
 		
+		
 	}
 
 }
