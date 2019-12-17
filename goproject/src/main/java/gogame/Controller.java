@@ -17,6 +17,273 @@ public class Controller {
 	@FXML
 	Circle button00, button01, button02, button03, button10, button11, button12, button13,button20,button21, button22, button23, button30, button31, button32,button33, button40, button41, button42, button43, button50, button51, button52, button53,button60,button61, button62, button63, button70, button71, button72,button73,button80, button81, button82,button83, button04, button05, button06, button07, button08, button14, button15, button16, button17, button18, button24, button25, button26, button27, button28, button34, button35, button36, button37, button38, button44, button45, button46, button47, button48, button54, button55, button56, button57, button58, button64, button65, button66, button67, button68, button74, button75, button76, button77, button78, button84, button85, button86, button87, button88; 
 
+	public void delete(String x, String y) {
+		System.out.println("delete"+x+" "+y);
+		switch(x) {
+		case "0":
+	        if(y.contentEquals("0")) {
+	        	button00.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("1")) {
+        		button01.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("2")) {
+	        	button02.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("3")) {
+	        	button03.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	button04.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	button05.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	button06.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	button07.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	button08.setFill(Color.TRANSPARENT);
+	        }
+	        break;
+	    case "1":
+	    	if(y.contentEquals("0")) {
+	    		button10.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("1")) {
+	        	button11.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("2")) {
+	        	button12.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("3")) {
+	        	button13.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	button14.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	button15.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	button16.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	button17.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	button18.setFill(Color.TRANSPARENT);
+	        }
+	        break;
+	    case "2":
+	    	if(y.contentEquals("0")) {
+	    		button20.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("1")) {
+	        	button21.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("2")) {
+	        	button22.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("3")) {
+	        	button23.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	button24.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	button25.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	button26.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	button27.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	button28.setFill(Color.TRANSPARENT);
+	        }
+	        break;
+	    case "3":
+	    	if(y.contentEquals("0")) {
+	    		button30.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("1")) {
+	        	button31.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("2")) {
+	        	button32.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("3")) {
+	        	button33.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	button34.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	button35.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	button36.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	button37.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	button38.setFill(Color.TRANSPARENT);
+	        }
+	        break;
+	    case "4":
+	    	if(y.contentEquals("0")) {
+	    		button40.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("1")) {
+	        	button41.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("2")) {
+	        	button42.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("3")) {
+	        	button43.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	button44.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	button45.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	button46.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	button47.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	button48.setFill(Color.TRANSPARENT);
+	        }
+	        break;
+	    case "5":
+	    	if(y.contentEquals("0")) {
+	    		button50.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("1")) {
+	        	button51.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("2")) {
+	        	button52.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("3")) {
+	        	button53.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	button54.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	button55.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	button56.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	button57.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	button58.setFill(Color.TRANSPARENT);
+	        }
+	        break;
+	    case "6":
+	    	if(y.contentEquals("0")) {
+	    		button60.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("1")) {
+	        	button61.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("2")) {
+	        	button62.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("3")) {
+	        	button63.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	button64.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	button65.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	button66.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	button67.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	button68.setFill(Color.TRANSPARENT);
+	        }
+	        break;
+	    case "7":
+	    	if(y.contentEquals("0")) {
+	    		button70.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("1")) {
+	        	button71.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("2")) {
+	        	button72.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("3")) {
+	        	button73.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	button74.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	button75.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	button76.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	button77.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	button78.setFill(Color.TRANSPARENT);
+	        }
+	        break;
+	    case "8":
+	    	if(y.contentEquals("0")) {
+	    		button80.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("1")) {
+	        	button81.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("2")) {
+	        	button82.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("3")) {
+	        	button83.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	button84.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	button85.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	button86.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	button87.setFill(Color.TRANSPARENT);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	button88.setFill(Color.TRANSPARENT);
+	        }
+	        break;
+		}
+		
+	}
 	
 	public void buttonb(String color, String x, String y) {
 		System.out.println("Controller buttonb"+x+" "+y);

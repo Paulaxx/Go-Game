@@ -12,6 +12,7 @@ public class ServerConnection implements Runnable{
 	private Socket server;
     private ObjectInputStream in;
     Client client;
+    int i;
     
     public ServerConnection(Socket s) {
 		server=s;
@@ -28,15 +29,26 @@ public class ServerConnection implements Runnable{
 			while(true) {
 				//@SuppressWarnings("unchecked")
 				ArrayList<String> fromSocket = (ArrayList<String>) in.readObject();
-				
-				System.out.println("ServerConnection"+fromSocket);
-				
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						Client.controller.buttonb(fromSocket.get(1), fromSocket.get(2), fromSocket.get(3));
+				if(fromSocket.get(0).equals("T")) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Client.controller.buttonb(fromSocket.get(1), fromSocket.get(2), fromSocket.get(3));
+						}
+					});
+					
+					for(i=4;i<fromSocket.size();i=i+2) {
+						System.out.println(i);
+						System.out.println(i+1);
+						System.out.println(fromSocket.size());
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								Client.controller.delete(fromSocket.get(i), fromSocket.get(i+1));
+							}
+						});
 					}
-				});
+				}
 			}
 		}
 		catch (Exception ex) {}
