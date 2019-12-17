@@ -441,113 +441,113 @@ public class GameLogic implements Logic {
  		
  		if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1;
  			//PUSTY
  		}
  		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x+1,y);
  			//A
  		}
  		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x-1,y);
  			//B
  		}
  		else if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x,y+1);
  			//C
  		}
  		else if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x,y-1);
  			//D
  		}
  		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y);
  			//AB
  		}
  		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x,y+1);
  			//AC
  		}
  		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x,y-1);
  			//AD
  		}
  		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y+1);
  			//BC
  		}
  		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y-1);
  			//BD	
  		}
  		else if(!Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
  			//CD	
  		}
  		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && !Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y+1);
  			//ABC
  		}
  		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && !Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y-1);
  			//ABD
  		}
  		else if(Board[x + 1][y].equals(curColor) && !Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
  			//ACD
  		}
  		else if(!Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x-1,y) + DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
  			//BCD
  		}
  		else if(Board[x + 1][y].equals(curColor) && Board[x - 1][y].equals(curColor) && Board[x][y + 1].equals(curColor) && Board[x][y - 1].equals(curColor) ){
  			Board[x][y]="empty";
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
  			return 1 + DeleteDeadStones2(x+1,y) + DeleteDeadStones2(x-1,y)+ DeleteDeadStones2(x,y+1) + DeleteDeadStones2(x,y-1);
  			//ABCD
  		}
