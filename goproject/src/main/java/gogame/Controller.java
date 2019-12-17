@@ -3,8 +3,10 @@ package gogame;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -835,6 +837,56 @@ public class Controller {
 	        ex.printStackTrace();
 		}
 
+	}
+	
+	public void bot(ActionEvent en) {
+		ArrayList<String> toSocket = new ArrayList<>();
+		toSocket.add("bot");
+		try {
+			Client.out.writeObject(toSocket);
+			Client.out.flush();
+		}
+		catch (IOException ex) {
+	        ex.printStackTrace();
+		}
+	}
+	
+	public void pas(ActionEvent en) {
+		ArrayList<String> toSocket = new ArrayList<>();
+		toSocket.add("pas");
+		try {
+			Client.out.writeObject(toSocket);
+			Client.out.flush();
+		}
+		catch (IOException ex) {
+	        ex.printStackTrace();
+		}
+		
+	}
+	
+	public void size13(ActionEvent en) {
+		ArrayList<String> toSocket = new ArrayList<>();
+		toSocket.add("size13");
+		try {
+			Client.out.writeObject(toSocket);
+			Client.out.flush();
+		}
+		catch (IOException ex) {
+	        ex.printStackTrace();
+		}
+	}
+	
+	public void size19(ActionEvent en) {
+		ArrayList<String> toSocket = new ArrayList<>();
+		toSocket.add("size19");
+		try {
+			Client.out.writeObject(toSocket);
+			Client.out.flush();
+		}
+		catch (IOException ex) {
+	        ex.printStackTrace();
+		}
+		
 	}
 
 }

@@ -34,20 +34,11 @@ public class ServerConnection implements Runnable{
 						@Override
 						public void run() {
 							Client.controller.buttonb(fromSocket.get(1), fromSocket.get(2), fromSocket.get(3));
-						}
-					});
-					
-					for(i=4;i<fromSocket.size();i=i+2) {
-						System.out.println(i);
-						System.out.println(i+1);
-						System.out.println(fromSocket.size());
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
+							for(i=4;i<fromSocket.size();i=i+2) {
 								Client.controller.delete(fromSocket.get(i), fromSocket.get(i+1));
 							}
-						});
-					}
+						}
+					});
 				}
 			}
 		}
