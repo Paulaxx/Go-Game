@@ -15,7 +15,7 @@ public class Controller {
 	@FXML
 	GridPane gridPane2;
 	@FXML
-	Circle button00, button01, button02, button03, button10, button11, button12, button13,button20,button21, button22, button23, button30, button31, button32,button33, button40, button41, button42, button43, button50, button51, button52, button53,button60,button61, button62, button63, button70, button71, button72,button73,button80, button81, button82,button83; 
+	Circle button00, button01, button02, button03, button10, button11, button12, button13,button20,button21, button22, button23, button30, button31, button32,button33, button40, button41, button42, button43, button50, button51, button52, button53,button60,button61, button62, button63, button70, button71, button72,button73,button80, button81, button82,button83, button04, button05, button06, button07, button08, button14, button15, button16, button17, button18, button24, button25, button26, button27, button28, button34, button35, button36, button37, button38, button44, button45, button46, button47, button48, button54, button55, button56, button57, button58, button64, button65, button66, button67, button68, button74, button75, button76, button77, button78, button84, button85, button86, button87, button88; 
 
 	
 	public void buttonb(String color, String x, String y) {
@@ -46,6 +46,36 @@ public class Controller {
 	        	else
 	        		button03.setFill(Color.BLACK);
 	        }
+	        else if(y.contentEquals("4")) {
+	        	if(color.contentEquals("white"))
+	        		button04.setFill(Color.WHITE);
+	        	else
+	        		button04.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	if(color.contentEquals("white"))
+	        		button05.setFill(Color.WHITE);
+	        	else
+	        		button05.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	if(color.contentEquals("white"))
+	        		button06.setFill(Color.WHITE);
+	        	else
+	        		button06.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	if(color.contentEquals("white"))
+	        		button07.setFill(Color.WHITE);
+	        	else
+	        		button07.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	if(color.contentEquals("white"))
+	        		button08.setFill(Color.WHITE);
+	        	else
+	        		button08.setFill(Color.BLACK);
+	        }
 	        break;
 	    case "1":
 	    	if(y.contentEquals("0")) {
@@ -71,6 +101,36 @@ public class Controller {
 	        		button13.setFill(Color.WHITE);
 	        	else
 	        		button13.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	if(color.contentEquals("white"))
+	        		button14.setFill(Color.WHITE);
+	        	else
+	        		button14.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	if(color.contentEquals("white"))
+	        		button15.setFill(Color.WHITE);
+	        	else
+	        		button15.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	if(color.contentEquals("white"))
+	        		button16.setFill(Color.WHITE);
+	        	else
+	        		button16.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	if(color.contentEquals("white"))
+	        		button17.setFill(Color.WHITE);
+	        	else
+	        		button17.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	if(color.contentEquals("white"))
+	        		button18.setFill(Color.WHITE);
+	        	else
+	        		button18.setFill(Color.BLACK);
 	        }
 	        break;
 	    case "2":
@@ -98,6 +158,36 @@ public class Controller {
 	        	else
 	        		button23.setFill(Color.BLACK);
 	        }
+	        else if(y.contentEquals("4")) {
+	        	if(color.contentEquals("white"))
+	        		button24.setFill(Color.WHITE);
+	        	else
+	        		button24.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	if(color.contentEquals("white"))
+	        		button25.setFill(Color.WHITE);
+	        	else
+	        		button25.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	if(color.contentEquals("white"))
+	        		button26.setFill(Color.WHITE);
+	        	else
+	        		button26.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	if(color.contentEquals("white"))
+	        		button27.setFill(Color.WHITE);
+	        	else
+	        		button27.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	if(color.contentEquals("white"))
+	        		button28.setFill(Color.WHITE);
+	        	else
+	        		button28.setFill(Color.BLACK);
+	        }
 	        break;
 	    case "3":
 	    	if(y.contentEquals("0")) {
@@ -123,6 +213,36 @@ public class Controller {
 	        		button33.setFill(Color.WHITE);
 	        	else
 	        		button33.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	if(color.contentEquals("white"))
+	        		button34.setFill(Color.WHITE);
+	        	else
+	        		button34.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	if(color.contentEquals("white"))
+	        		button35.setFill(Color.WHITE);
+	        	else
+	        		button35.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	if(color.contentEquals("white"))
+	        		button36.setFill(Color.WHITE);
+	        	else
+	        		button36.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	if(color.contentEquals("white"))
+	        		button37.setFill(Color.WHITE);
+	        	else
+	        		button37.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	if(color.contentEquals("white"))
+	        		button38.setFill(Color.WHITE);
+	        	else
+	        		button38.setFill(Color.BLACK);
 	        }
 	        break;
 	    case "4":
@@ -150,6 +270,36 @@ public class Controller {
 	        	else
 	        		button43.setFill(Color.BLACK);
 	        }
+	        else if(y.contentEquals("4")) {
+	        	if(color.contentEquals("white"))
+	        		button44.setFill(Color.WHITE);
+	        	else
+	        		button44.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	if(color.contentEquals("white"))
+	        		button45.setFill(Color.WHITE);
+	        	else
+	        		button45.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	if(color.contentEquals("white"))
+	        		button46.setFill(Color.WHITE);
+	        	else
+	        		button46.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	if(color.contentEquals("white"))
+	        		button47.setFill(Color.WHITE);
+	        	else
+	        		button47.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	if(color.contentEquals("white"))
+	        		button48.setFill(Color.WHITE);
+	        	else
+	        		button48.setFill(Color.BLACK);
+	        }
 	        break;
 	    case "5":
 	    	if(y.contentEquals("0")) {
@@ -175,6 +325,36 @@ public class Controller {
 	        		button53.setFill(Color.WHITE);
 	        	else
 	        		button53.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	if(color.contentEquals("white"))
+	        		button54.setFill(Color.WHITE);
+	        	else
+	        		button54.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	if(color.contentEquals("white"))
+	        		button55.setFill(Color.WHITE);
+	        	else
+	        		button55.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	if(color.contentEquals("white"))
+	        		button56.setFill(Color.WHITE);
+	        	else
+	        		button56.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	if(color.contentEquals("white"))
+	        		button57.setFill(Color.WHITE);
+	        	else
+	        		button57.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	if(color.contentEquals("white"))
+	        		button58.setFill(Color.WHITE);
+	        	else
+	        		button58.setFill(Color.BLACK);
 	        }
 	        break;
 	    case "6":
@@ -202,6 +382,36 @@ public class Controller {
 	        	else
 	        		button63.setFill(Color.BLACK);
 	        }
+	        else if(y.contentEquals("4")) {
+	        	if(color.contentEquals("white"))
+	        		button64.setFill(Color.WHITE);
+	        	else
+	        		button64.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	if(color.contentEquals("white"))
+	        		button65.setFill(Color.WHITE);
+	        	else
+	        		button65.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	if(color.contentEquals("white"))
+	        		button66.setFill(Color.WHITE);
+	        	else
+	        		button66.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	if(color.contentEquals("white"))
+	        		button67.setFill(Color.WHITE);
+	        	else
+	        		button67.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	if(color.contentEquals("white"))
+	        		button68.setFill(Color.WHITE);
+	        	else
+	        		button68.setFill(Color.BLACK);
+	        }
 	        break;
 	    case "7":
 	    	if(y.contentEquals("0")) {
@@ -227,6 +437,36 @@ public class Controller {
 	        		button73.setFill(Color.WHITE);
 	        	else
 	        		button73.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("4")) {
+	        	if(color.contentEquals("white"))
+	        		button74.setFill(Color.WHITE);
+	        	else
+	        		button74.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	if(color.contentEquals("white"))
+	        		button75.setFill(Color.WHITE);
+	        	else
+	        		button75.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	if(color.contentEquals("white"))
+	        		button76.setFill(Color.WHITE);
+	        	else
+	        		button76.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	if(color.contentEquals("white"))
+	        		button77.setFill(Color.WHITE);
+	        	else
+	        		button77.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	if(color.contentEquals("white"))
+	        		button78.setFill(Color.WHITE);
+	        	else
+	        		button78.setFill(Color.BLACK);
 	        }
 	        break;
 	    case "8":
@@ -254,21 +494,48 @@ public class Controller {
 	        	else
 	        		button83.setFill(Color.BLACK);
 	        }
+	        else if(y.contentEquals("4")) {
+	        	if(color.contentEquals("white"))
+	        		button84.setFill(Color.WHITE);
+	        	else
+	        		button84.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("5")) {
+	        	if(color.contentEquals("white"))
+	        		button85.setFill(Color.WHITE);
+	        	else
+	        		button85.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("6")) {
+	        	if(color.contentEquals("white"))
+	        		button86.setFill(Color.WHITE);
+	        	else
+	        		button86.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("7")) {
+	        	if(color.contentEquals("white"))
+	        		button87.setFill(Color.WHITE);
+	        	else
+	        		button87.setFill(Color.BLACK);
+	        }
+	        else if(y.contentEquals("8")) {
+	        	if(color.contentEquals("white"))
+	        		button88.setFill(Color.WHITE);
+	        	else
+	        		button88.setFill(Color.BLACK);
+	        }
 	        break;
 		}
 	}
 	
 	public void clickmethod(MouseEvent e){
 		
-		button00.setVisible(true);
-		button00.setFill(Color.BLACK);
-		
 		ArrayList<String> toSocket = new ArrayList<>();
 		Node node = (Node) e.getSource();
 		Integer y=GridPane.getRowIndex(node);
 		Integer x=GridPane.getColumnIndex(node);
-		System.out.println();
-		/*toSocket.clear();
+		System.out.println(x+" "+y);
+		toSocket.clear();
 		if(x!=null && y!=null) {
 			String X = Integer.toString(x);
 			String Y = Integer.toString(y);
@@ -293,14 +560,13 @@ public class Controller {
 			toSocket.add("0");
 			toSocket.add("0");
 		}
-		System.out.println("Controller clickMethod"+toSocket);
 		try {
 			Client.out.writeObject(toSocket);
 			Client.out.flush();
 		}
 		catch (IOException ex) {
 	        ex.printStackTrace();
-		}*/
+		}
 
 	}
 

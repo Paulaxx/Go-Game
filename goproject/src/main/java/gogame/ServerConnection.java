@@ -11,9 +11,6 @@ public class ServerConnection implements Runnable{
 
 	private Socket server;
     private ObjectInputStream in;
-    //Parent container;
-    //Controller controller;
-    //FXMLLoader loader;
     Client client;
     
     public ServerConnection(Socket s) {
@@ -25,20 +22,9 @@ public class ServerConnection implements Runnable{
 		}
 	}
 
-
-	
 	@Override
 	public void run() {
-		try {
-			/*loader = new FXMLLoader();
-			loader.setLocation(this.getClass().getResource("/fxml/GameBorder9.fxml"));
-			try {
-				container=loader.load();
-				controller=loader.getController();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}*/
-			
+		try {			
 			while(true) {
 				@SuppressWarnings("unchecked")
 				ArrayList<String> fromSocket = (ArrayList<String>)in.readObject();

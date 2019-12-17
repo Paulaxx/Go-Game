@@ -17,7 +17,6 @@ public class Player implements Runnable{
     public Player(Socket socket, char color) throws IOException{
         this.socket = socket;
         this.color = color;
-        
     }
     
     public void run() {
@@ -26,10 +25,7 @@ public class Player implements Runnable{
     		
     		input = new ObjectInputStream(socket.getInputStream());
             output = new ObjectOutputStream(socket.getOutputStream());
-            GameLogic gamelogic = new GameLogic();
-            /*for (Player someplayer : Server.players) {
-                someplayer.output.writeObject("1");
-            }*/
+            //GameLogic gamelogic = new GameLogic();
             
             while(true) {
             	@SuppressWarnings("unchecked")
@@ -37,58 +33,21 @@ public class Player implements Runnable{
             	String whatChoosen = fromSocket.get(0);
             	System.out.println("Player"+fromSocket);
         		
-            	if(whatChoosen.contentEquals("size")) {
-            		Server.size=Integer.parseInt(fromSocket.get(1));
-            		gamelogic.size = Server.size;
-            		gamelogic.resetBoard();
-            		 for (Player someplayer : Server.players) {
-                         someplayer.output.writeObject(color+"size"+Server.size);
-                     }
-            	}
-            	if(whatChoosen.contentEquals("move")) {
-            		 for (Player someplayer : Server.players) {
-                         someplayer.output.writeObject(color+"move"+fromSocket.get(1)+fromSocket.get(2));
-                     }
-            	}
-            	else if(whatChoosen.contentEquals("bot")) {
-            		Server.bot=Integer.parseInt(fromSocket.get(1));
-            		for (Player someplayer : Server.players) {
-                        someplayer.output.writeObject(color+"bot"+Server.bot);
-                    }
-            	}
-            	else if(whatChoosen.contentEquals("pass")) {
-            		for (Player someplayer : Server.players) {
-                        someplayer.output.writeObject(color+"pass");
-                    }        		
-            	}
-            	else if(whatChoosen.contentEquals("F5")) {
-            		for (Player someplayer : Server.players) {
-                        someplayer.output.writeObject(color+"F5");
-                    }  		
-            	}
-            	else if(whatChoosen.contentEquals("movee")) {
-            		//Server.x=Integer.parseInt(fromSocket.get(1));
-            		//Server.y=Integer.parseInt(fromSocket.get(2));
-         
-            		for (Player someplayer : Server.players) {
-                        someplayer.output.writeObject(color+"move");
-                    }
-            		           	
-            	}	
-            	else if(whatChoosen.contentEquals("click")) {
-            		//sprawdzanie czy mozna
-            		//ArrayList<String> sent = new ArrayList<String>();
-            		//sent.add("T");
-            		//sent.add("black");
-            		//sent.add(fromSocket.get(1));
-            		//sent.add(fromSocket.get(2));
-            		gamelogic.Insert(Integer.parseInt(fromSocket.get(1)),Integer.parseInt(fromSocket.get(2)));
+            	if(whatChoosen.contentEquals("click")) {
+            		ArrayList<String> sent = new ArrayList<String>();
+            		sent.add("T");
+            		sent.add("black");
+            		sent.add(fromSocket.get(1));
+            		sent.add(fromSocket.get(2));
+            		//gamelogic.Insert(Integer.parseInt(fromSocket.get(1)),Integer.parseInt(fromSocket.get(2)));
             		 
             		//System.out.println(GameLogic.message);
             		for (Player someplayer : Server.players) {
-                        someplayer.output.writeObject(gamelogic.message);
+                        //someplayer.output.writeObject(gamelogic.message);
+            			someplayer.output.writeObject(sent);
+            			
                     }
-            		gamelogic.message.clear();
+            		//gamelogic.message.clear();
             		
             	}
             }
