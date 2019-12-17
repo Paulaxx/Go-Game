@@ -38,17 +38,44 @@ public class Player implements Runnable{
             	System.out.println("Player"+fromSocket);
         		
             	if(whatChoosen.contentEquals("click")) {
-            		gamelogic.Insert(Integer.parseInt(fromSocket.get(1))+1,Integer.parseInt(fromSocket.get(2))+1); 
+            		if(gamelogic.bot == 0) {
+            			gamelogic.Insert(Integer.parseInt(fromSocket.get(1))+1,Integer.parseInt(fromSocket.get(2))+1); 
+            		}
+            		else{
+            			gamelogic.Insert(Integer.parseInt(fromSocket.get(1))+1,Integer.parseInt(fromSocket.get(2))+1);
+            			gamelogic.updateBotBoard();
+            			gamelogic.Insert(gamelogic.xbot,gamelogic.ybot);
+            		}
+            	
             		
             		for (Player someplayer : Server.players) {
             			System.out.println("In player : " + gamelogic.message);
-                        someplayer.output.writeObject(gamelogic.message);
+                        
+            			if(gamelogic.bot == 0) {
+            				
+            			someplayer.output.writeObject(gamelogic.message2);
                         someplayer.output.reset();
+            			}
+            			else {
+            				someplayer.output.writeObject(gamelogic.message2);
+                			someplayer.output.writeObject(gamelogic.message);
+                            someplayer.output.reset();
+            				
+            			}
                         
                     }
-            		
+            		if(gamelogic.bot==0) {
             		gamelogic.message.clear();
             		gamelogic.message.removeAll(gamelogic.message);
+            		}
+            		else {
+            			
+            		gamelogic.message.clear();
+                	gamelogic.message.removeAll(gamelogic.message);
+                	gamelogic.message2.clear();
+                	gamelogic.message2.removeAll(gamelogic.message2);
+            			
+            		}
             	}
             }
         } 

@@ -1,16 +1,20 @@
 package gogame;
 
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 
 public class GameLogic implements Logic {
 
-    public int white_score=0,black_score=0,size=9,breath_count=0,breath_count1=-1,breath_count2=-1,breath_count3=-1,breath_count4=-1;
+    public int bot=1,white_score=0,randomNum,xbot,ybot,black_score=0,size=9,breath_count=0,breath_count1=-1,breath_count2=-1,breath_count3=-1,breath_count4=-1;
 	public String[][] Board = new String[size+2][size+2];
 	public String[][] copyBoard = new String[size+2][size+2];
 	public String[][] copy2Board = new String[size+2][size+2];
 	public Integer[][] botBoard = new Integer[size+2][size+2];
 	public String actualColor="black",opponentColor="white",curColor,empty="";
 	public ArrayList<String> message = new ArrayList<>();
+	public ArrayList<Integer> botX = new ArrayList<>();
+	public ArrayList<Integer> botY = new ArrayList<>();
+	public ArrayList<String> message2 = new ArrayList<>();
 	
 	
 	public GameLogic() {
@@ -413,7 +417,7 @@ public class GameLogic implements Logic {
  			message.add("N");
  			System.out.println(x + " " + y +"Not Inserted");
  		}
- 		System.out.println(message);
+ 		message2 = message;
  		
  	}
  		
@@ -554,7 +558,7 @@ public class GameLogic implements Logic {
  		return 0;
  	}
  	 
-public int CheckDeleteDeadStones(int x,int y,String color) {
+ 	 public int CheckDeleteDeadStones(int x,int y,String color) {
  		
  		
  		curColor = color;
@@ -648,7 +652,7 @@ public int CheckDeleteDeadStones(int x,int y,String color) {
  	}
  	 
  	 
- 	 public void updateBotBoard() {
+ 	 	public void updateBotBoard() {
 		int count=0,max=-100;
 		for(int i=1;i<size+1;i++) {
 			for(int j=1;j<size+1;j++) {
@@ -791,12 +795,19 @@ public int CheckDeleteDeadStones(int x,int y,String color) {
 		for(int i=1;i<size+1;i++) {
 			for(int j=1;j<size+1;j++) {
 				
-				
+				if(botBoard[i][j] == max) {
+					
+					botX.add(i);
+					botY.add(j);
+					
+				}
 				
 			}
 		}
+	 randomNum = ThreadLocalRandom.current().nextInt(0, botX.size());
 		
-		
+		xbot = botX.get(randomNum);
+		ybot = botY.get(randomNum);
 		
 		
 		
