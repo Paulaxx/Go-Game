@@ -10,13 +10,16 @@ public class Player implements Runnable{
 	
 	char color;
 	Socket socket;
+	GameLogic gamelogic;
 	ObjectInputStream input;
 	ObjectOutputStream output;
 	Player opponent;
 
-    public Player(Socket socket, char color) throws IOException{
+    public Player(Socket socket, char color, GameLogic gamelogic) throws IOException{
         this.socket = socket;
         this.color = color;
+        this.gamelogic = gamelogic;
+        
     }
     
     public void run() {
@@ -25,7 +28,8 @@ public class Player implements Runnable{
     		
     		input = new ObjectInputStream(socket.getInputStream());
             output = new ObjectOutputStream(socket.getOutputStream());
-            //GameLogic gamelogic = new GameLogic();
+            
+            
             
             while(true) {
             	@SuppressWarnings("unchecked")
@@ -34,21 +38,17 @@ public class Player implements Runnable{
             	System.out.println("Player"+fromSocket);
         		
             	if(whatChoosen.contentEquals("click")) {
-            		ArrayList<String> sent = new ArrayList<String>();
-            		sent.add("T");
-            		sent.add("black");
-            		sent.add(fromSocket.get(1));
-            		sent.add(fromSocket.get(2));
-            		//gamelogic.Insert(Integer.parseInt(fromSocket.get(1)),Integer.parseInt(fromSocket.get(2)));
-            		 
-            		//System.out.println(GameLogic.message);
-            		for (Player someplayer : Server.players) {
-                        //someplayer.output.writeObject(gamelogic.message);
-            			someplayer.output.writeObject(sent);
-            			
-                    }
-            		//gamelogic.message.clear();
+            		gamelogic.Insert(Integer.parseInt(fromSocket.get(1))+1,Integer.parseInt(fromSocket.get(2))+1); 
             		
+            		for (Player someplayer : Server.players) {
+            			System.out.println("In player : " + gamelogic.message);
+                        someplayer.output.writeObject(gamelogic.message);
+                        someplayer.output.reset();
+                        
+                    }
+            		
+            		gamelogic.message.clear();
+            		gamelogic.message.removeAll(gamelogic.message);
             	}
             }
         } 

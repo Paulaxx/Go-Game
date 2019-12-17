@@ -8,11 +8,12 @@ public class GameLogic implements Logic {
 	public String[][] Board = new String[size+2][size+2];
 	public String[][] copyBoard = new String[size+2][size+2];
 	public String actualColor="black",opponentColor="white",curColor,empty="";
-	
 	public ArrayList<String> message = new ArrayList<>();
+	
 	
 	public GameLogic() {
 
+		resetBoard();
 	}
 	
 	
@@ -89,6 +90,8 @@ public class GameLogic implements Logic {
 		breath_count2=-1;
 		breath_count3=-1;
 		breath_count4=-1;
+		
+		System.out.println(x +" "+ y);
 		
 		if(Board[x][y].equals("empty")) {
 			Board[x][y]="check";
@@ -312,12 +315,12 @@ public class GameLogic implements Logic {
  	
  	 public void Insert(int x,int y) {
  		int wynik;
- 		
  		if(CanYouInsert(x,y) == true){
+ 			
  			message.add("T");
  			message.add(actualColor);
- 			message.add(Integer.toString(x));
- 			message.add(Integer.toString(y));
+ 			message.add(Integer.toString(x-1));
+ 			message.add(Integer.toString(y-1));
 
  			System.out.println("Inserted");
  			Board[x][y]="check";
@@ -359,6 +362,7 @@ public class GameLogic implements Logic {
  			message.add("N");
  			System.out.println(x + " " + y +"Not Inserted");
  		}
+ 		System.out.println(message);
  		
  	}
  		

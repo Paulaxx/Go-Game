@@ -26,8 +26,9 @@ public class ServerConnection implements Runnable{
 	public void run() {
 		try {			
 			while(true) {
-				@SuppressWarnings("unchecked")
-				ArrayList<String> fromSocket = (ArrayList<String>)in.readObject();
+				//@SuppressWarnings("unchecked")
+				ArrayList<String> fromSocket = (ArrayList<String>) in.readObject();
+				
 				System.out.println("ServerConnection"+fromSocket);
 				
 				Platform.runLater(new Runnable() {

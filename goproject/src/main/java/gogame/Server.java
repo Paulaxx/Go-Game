@@ -16,17 +16,19 @@ public class Server {
 	ServerSocket server;
 
 	public Server() {
+		
+		GameLogic gamelogic = new GameLogic();
+		
 		try {
 			server = new ServerSocket(5011); 
 			ExecutorService pool = Executors.newFixedThreadPool(200);
 			while(true) {
-				Player player1= new Player(server.accept(), 'B');
+				Player player1= new Player(server.accept(), 'B', gamelogic);
 				players.add(player1);
 				pool.execute(player1);
-				Player player2= new Player(server.accept(), 'W');
+				Player player2= new Player(server.accept(), 'W', gamelogic);
 				players.add(player2);
 				pool.execute(player2);
-				
 			}
 		}
 		catch (IOException e) {
