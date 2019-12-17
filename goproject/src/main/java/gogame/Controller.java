@@ -888,5 +888,17 @@ public class Controller {
 		}
 		
 	}
+	
+	public void endOfGame() {
+		ArrayList<String> toSocket = new ArrayList<>();
+		toSocket.add("koniec");
+		try {
+			Client.out.writeObject(toSocket);
+			Client.out.flush();
+		}
+		catch (IOException ex) {
+	        ex.printStackTrace();
+		}
+	}
 
 }

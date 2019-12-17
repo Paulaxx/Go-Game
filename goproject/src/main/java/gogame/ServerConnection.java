@@ -30,6 +30,23 @@ public class ServerConnection implements Runnable{
 				//@SuppressWarnings("unchecked")
 				ArrayList<String> fromSocket = (ArrayList<String>) in.readObject();
 				if(fromSocket.get(0).equals("T")) {
+					
+					if(fromSocket.get(4).equals("T")) {
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								Client.controller.buttonb(fromSocket.get(1), fromSocket.get(2), fromSocket.get(3));
+								Client.controller.buttonb(fromSocket.get(5), fromSocket.get(6), fromSocket.get(7));
+								for(i=8;i<fromSocket.size();i=i+2) {
+									Client.controller.delete(fromSocket.get(i), fromSocket.get(i+1));
+								}
+								if(fromSocket.get(4).equals("N")) {
+									Client.controller.endOfGame();
+								}
+							}
+						});
+					}
+					else {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
@@ -39,6 +56,7 @@ public class ServerConnection implements Runnable{
 							}
 						}
 					});
+					}
 				}
 			}
 		}
