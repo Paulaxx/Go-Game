@@ -58,7 +58,7 @@
             <Circle fx:id="button00" onMouseClicked="#clickmethod" pickOnBounds="true" radius="21.0" strokeType="INSIDE" style="-fx-fill: TRANSPARENT;" translateX="60.0" />
             <Circle fx:id="button10" onMouseClicked="#clickmethod" pickOnBounds="true" radius="21.0" strokeType="INSIDE" style="-fx-fill: TRANSPARENT;" translateX="48.0" GridPane.columnIndex="1" />
             <Circle fx:id="button11" onMouseClicked="#clickmethod" pickOnBounds="true" radius="21.0" strokeType="INSIDE" style="-fx-fill: TRANSPARENT;" translateX="48.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Circle fx:id="button20" onMouseClicked="#clickmethod" pickOnBounds="true" radius="21.0" strokeType="INSIDE" style="-fx-fill: TRANSPARENT;" translateX="39.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Circle fx:id="button20" onMouseClicked="#clickmethod" pickOnBounds="true" radius="21.0" strokeType="INSIDE" style="-fx-fill: TRANSPARENT;" translateX="39.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
             <Circle fx:id="button30" onMouseClicked="#clickmethod" pickOnBounds="true" radius="21.0" strokeType="INSIDE" style="-fx-fill: TRANSPARENT;" translateX="30.0" GridPane.columnIndex="3" GridPane.rowIndex="0" />
             <Circle fx:id="button40" onMouseClicked="#clickmethod" pickOnBounds="true" radius="21.0" strokeType="INSIDE" style="-fx-fill: TRANSPARENT;" translateX="20.0" GridPane.columnIndex="4" GridPane.rowIndex="0" />
             <Circle fx:id="button50" onMouseClicked="#clickmethod" pickOnBounds="true" radius="21.0" strokeType="INSIDE" style="-fx-fill: TRANSPARENT;" translateX="14.0" GridPane.columnIndex="5" GridPane.rowIndex="0" />

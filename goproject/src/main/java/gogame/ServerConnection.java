@@ -28,6 +28,7 @@ public class ServerConnection implements Runnable{
 		try {			
 			while(true) {
 				//@SuppressWarnings("unchecked")
+				@SuppressWarnings("unchecked")
 				ArrayList<String> fromSocket = (ArrayList<String>) in.readObject();
 				if(fromSocket.get(0).equals("T")) {
 					
@@ -93,6 +94,24 @@ public class ServerConnection implements Runnable{
 						@Override
 						public void run() {
 							Client.controller.illegalmove();
+						}
+					});
+				}
+				
+				else if(fromSocket.get(0).equals("pas")) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Client.controller.pas();
+						}
+					});
+				}
+				
+				else if(fromSocket.get(0).equals("koniec")) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Client.controller.end(Integer.parseInt(fromSocket.get(1)), Integer.parseInt(fromSocket.get(2)));
 						}
 					});
 				}

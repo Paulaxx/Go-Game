@@ -2,11 +2,9 @@ package gogame;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -18,7 +16,7 @@ public class Controller {
 	GridPane gridPane2;
 	@FXML
 	Circle button00, button01, button02, button03, button10, button11, button12, button13,button20,button21, button22, button23, button30, button31, button32,button33, button40, button41, button42, button43, button50, button51, button52, button53,button60,button61, button62, button63, button70, button71, button72,button73,button80, button81, button82,button83, button04, button05, button06, button07, button08, button14, button15, button16, button17, button18, button24, button25, button26, button27, button28, button34, button35, button36, button37, button38, button44, button45, button46, button47, button48, button54, button55, button56, button57, button58, button64, button65, button66, button67, button68, button74, button75, button76, button77, button78, button84, button85, button86, button87, button88; 
-
+	
 	public void delete(String x, String y) {
 		System.out.println("delete"+x+" "+y);
 		switch(x) {
@@ -908,6 +906,21 @@ public class Controller {
 	
 	public void botpas(){
 		InfoBox.display("Bot has passed, end of the game");
+	}
+	
+	public void pas(){
+		InfoBox.display("One player has passed");
+	}
+	
+	public void end(int b, int w){
+		if(b>w) {
+			InfoBox.display("Black player won!\n"+ "Black score: "+ b+ "\nWhite score: "+w);
+		}
+		else if(b<w) {
+			InfoBox.display("White player won!\n"+ "White score: "+ w+ "\nBlack score: "+b);
+		}
+		else
+			InfoBox.display("Draw\n"+ "Score: "+b);
 	}
 
 }
