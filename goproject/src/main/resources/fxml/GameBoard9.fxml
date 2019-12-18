@@ -136,10 +136,8 @@
             <Circle fx:id="button86" onMouseClicked="#clickmethod" pickOnBounds="true" radius="21.0" strokeType="INSIDE" style="-fx-fill: TRANSPARENT;" translateX="-15.0" GridPane.columnIndex="8" GridPane.rowIndex="6" />
             <Circle fx:id="button87" onMouseClicked="#clickmethod" pickOnBounds="true" radius="21.0" strokeType="INSIDE" style="-fx-fill: TRANSPARENT;" translateX="-15.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
             <Circle fx:id="button88" onMouseClicked="#clickmethod" pickOnBounds="true" radius="21.0" strokeType="INSIDE" style="-fx-fill: TRANSPARENT;" translateX="-15.0" GridPane.columnIndex="8" GridPane.rowIndex="8" />
-            <Button fx:id="bot" mnemonicParsing="false" onAction="#bot" prefHeight="44.0" prefWidth="56.0" text="Bot" GridPane.rowIndex="1" />
-            <Button fx:id="pas" mnemonicParsing="false" onAction="#pas" prefHeight="44.0" prefWidth="56.0" text="Pas" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" onAction="#size13" prefHeight="44.0" prefWidth="56.0" text="Size 13" GridPane.rowIndex="5" />
-            <Button mnemonicParsing="false" onAction="#size19" prefHeight="44.0" prefWidth="56.0" text="Size 19" GridPane.rowIndex="7" />
+            <Button fx:id="bot" mnemonicParsing="false" onAction="#bot" prefHeight="44.0" prefWidth="56.0" text="Bot" GridPane.rowIndex="2" />
+            <Button fx:id="pas" mnemonicParsing="false" onAction="#pas" prefHeight="44.0" prefWidth="56.0" text="Pas" GridPane.rowIndex="5" />
          </children>
       </GridPane>
    </children>
