@@ -38,6 +38,11 @@ public class Player implements Runnable{
             	System.out.println("Player"+fromSocket);
         		
             	if(whatChoosen.contentEquals("click")) {
+            		if(gamelogic.pas == 1) {
+            			
+            			gamelogic.changeColor();
+            		}
+            		gamelogic.pas=0;
             		if(gamelogic.bot == 0) {
             			gamelogic.Insert(Integer.parseInt(fromSocket.get(1))+1,Integer.parseInt(fromSocket.get(2))+1); 
             		}
@@ -84,6 +89,121 @@ public class Player implements Runnable{
             			
             		}
             	}
+            	else if(whatChoosen.contentEquals("bot")){
+            		
+            		gamelogic.bot = 1;
+            		gamelogic.updateBotBoard();
+            		ArrayList<String> Send = new ArrayList<>();
+            		Send.add("bot");
+            		for (Player someplayer : Server.players) {
+            			System.out.println("Returned : " + Send);
+                        
+            			
+            			someplayer.output.writeObject(Send);
+            			
+            			
+            		}
+            		Send.clear();
+                	Send.removeAll(Send);
+            		
+            		
+            		
+            	}
+            	else if(whatChoosen.contentEquals("size13")){
+            		
+            		//gamelogic.size = 13;
+            		//gamelogic.resetBoard();
+            		//gamelogic.CopyThe2Board();
+            		//gamelogic.CopyTheBoard();
+            		//gamelogic.resetBotBoard();
+            		ArrayList<String> Sendsize = new ArrayList<>();
+            		Sendsize.add("size13");
+            		for (Player someplayer : Server.players) {
+            			System.out.println("Returned : " + Sendsize);
+                        
+            			
+            			someplayer.output.writeObject(Sendsize);
+            			
+            			
+            		}
+            		Sendsize.clear();
+                	Sendsize.removeAll(Sendsize);
+            		
+            		
+            		
+            	}
+            	else if(whatChoosen.contentEquals("size19")){
+            		
+            		//gamelogic.size = 19;
+            		//gamelogic.resetBoard();
+            		//gamelogic.CopyThe2Board();
+            		//gamelogic.CopyTheBoard();
+            		//gamelogic.resetBotBoard();
+            		ArrayList<String> Sendsize2 = new ArrayList<>();
+            		Sendsize2.add("size19");
+            		for (Player someplayer : Server.players) {
+            			System.out.println("Returned : " + Sendsize2);
+                        
+            			
+            			someplayer.output.writeObject(Sendsize2);
+            			
+            			
+            		}
+            		Sendsize2.clear();
+                	Sendsize2.removeAll(Sendsize2);
+            		
+            		
+            		
+            	}
+            	else if(whatChoosen.contentEquals("pas")){
+            		
+            		ArrayList<String> Sendpas = new ArrayList<>();
+            		
+            		if(gamelogic.bot == 1) {
+            			
+            			Sendpas.add("koniec");
+            			Sendpas.add(Integer.toString(gamelogic.black_score));
+            			Sendpas.add(Integer.toString(gamelogic.white_score));
+            			
+            		}
+            		else{
+            			
+            			gamelogic.pas++;
+            			if(gamelogic.pas == 2) {
+            				
+            				Sendpas.add("koniec");
+                			Sendpas.add(Integer.toString(gamelogic.black_score));
+                			Sendpas.add(Integer.toString(gamelogic.white_score));
+            				
+            			}
+            			else {
+            				
+            				Sendpas.add("pas");
+            				
+            			}
+            			
+            		}
+            		
+            		for (Player someplayer : Server.players) {
+            			System.out.println("Returned : " + Sendpas);
+                        
+            			
+            			someplayer.output.writeObject(Sendpas);
+            			
+            			
+            		}
+            		Sendpas.clear();
+                	Sendpas.removeAll(Sendpas);
+            		
+            		
+            	}
+            		
+            		
+            		
+            		
+            		
+            		
+            	
             }
         } 
         catch(IOException | ClassNotFoundException e) {
