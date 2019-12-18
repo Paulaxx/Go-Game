@@ -849,7 +849,7 @@ public class Controller {
 		catch (IOException ex) {
 	        ex.printStackTrace();
 		}
-		//InfoBox.display("You're playing with a bot");
+		InfoBox.display("You're playing with a bot");
 	}
 	
 	public void pas(ActionEvent en) {
@@ -900,6 +900,14 @@ public class Controller {
 		catch (IOException ex) {
 	        ex.printStackTrace();
 		}
+	}
+	
+	public void illegalmove() {
+		InfoBox.display("Illegal move");
+	}
+	
+	public void botpas(){
+		InfoBox.display("Bot has passed, end of the game");
 	}
 
 }
