@@ -43,7 +43,7 @@ public class UpdateScoreTest {
 		}
 		
 		assertEquals(czarnywynik2,5);
-		assertEquals(bialywynik2,5);
+		assertEquals(bialywynik2,11);
 		gamelogic.changeColor();
 		if(gamelogic.actualColor.equals("black")) {
 			
