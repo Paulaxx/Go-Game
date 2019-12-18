@@ -849,6 +849,7 @@ public class Controller {
 		catch (IOException ex) {
 	        ex.printStackTrace();
 		}
+		InfoBox.display("You're playing with a bot");
 	}
 	
 	public void pas(ActionEvent en) {
