@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class GameLogic implements Logic {
 
-    public int bot=1,white_score=0,randomNum,xbot,ybot,black_score=0,size=9,breath_count=0,breath_count1=-1,breath_count2=-1,breath_count3=-1,breath_count4=-1;
+    public int ifbot=1,bot=1,white_score=0,randomNum,xbot,ybot,black_score=0,size=9,breath_count=0,breath_count1=-1,breath_count2=-1,breath_count3=-1,breath_count4=-1;
 	public String[][] Board = new String[size+2][size+2];
 	public String[][] copyBoard = new String[size+2][size+2];
 	public String[][] copy2Board = new String[size+2][size+2];

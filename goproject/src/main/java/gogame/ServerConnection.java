@@ -59,7 +59,7 @@ public class ServerConnection implements Runnable{
 					}
 				}
 				else if(fromSocket.get(0).equals("N")) {
-					InfoBox.display("Illegal move");
+					//InfoBox.display("Illegal move");
 				}
 			}
 		}

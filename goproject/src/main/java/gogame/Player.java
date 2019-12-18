@@ -44,7 +44,11 @@ public class Player implements Runnable{
             		else{
             			gamelogic.Insert(Integer.parseInt(fromSocket.get(1))+1,Integer.parseInt(fromSocket.get(2))+1);
             			gamelogic.updateBotBoard();
-            			gamelogic.Insert(gamelogic.xbot,gamelogic.ybot);
+            			if(gamelogic.message2.get(0).equals("T")) {
+            				gamelogic.Insert(gamelogic.xbot,gamelogic.ybot);
+            			}
+            			else
+            				gamelogic.ifbot=0;
             		}
             	
             		
@@ -58,7 +62,10 @@ public class Player implements Runnable{
             			}
             			else {
             				someplayer.output.writeObject(gamelogic.message2);
-                			someplayer.output.writeObject(gamelogic.message);
+            				if(gamelogic.ifbot == 1) {
+            					
+            					someplayer.output.writeObject(gamelogic.message);	
+            				}
                             someplayer.output.reset();
             				
             			}
@@ -69,7 +76,7 @@ public class Player implements Runnable{
             		gamelogic.message.removeAll(gamelogic.message);
             		}
             		else {
-            			
+            		gamelogic.ifbot=1;	
             		gamelogic.message.clear();
                 	gamelogic.message.removeAll(gamelogic.message);
                 	gamelogic.message2.clear();
