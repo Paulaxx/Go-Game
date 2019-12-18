@@ -132,7 +132,7 @@ public class GameLogic implements Logic {
 					botBoard[i][j] = -100;	
 				}
 				else {
-					botBoard[i][j] = 0;
+					botBoard[i][j] = 50;
 				}
 			}
 		}
@@ -804,10 +804,16 @@ public class GameLogic implements Logic {
 				
 			}
 		}
+		max=-100;
 	 randomNum = ThreadLocalRandom.current().nextInt(0, botX.size());
 		
 		xbot = botX.get(randomNum);
 		ybot = botY.get(randomNum);
+		
+		botX.clear();
+		botX.removeAll(botX);
+		botY.clear();
+		botY.removeAll(botY);
 		
 		
 		
