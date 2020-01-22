@@ -17,6 +17,7 @@ public class GameLogic implements Logic {
 	public ArrayList<Integer> botX = new ArrayList<>();
 	public ArrayList<Integer> botY = new ArrayList<>();
 	public ArrayList<String> message2 = new ArrayList<>();
+	public int gameId;
 	
 	
 	public GameLogic(int gameId) {
@@ -25,6 +26,7 @@ public class GameLogic implements Logic {
 		CopyTheBoard();
 		CopyThe2Board();
 		resetBotBoard();
+		this.gameId=gameId;
 	}
 	
 	
@@ -413,10 +415,13 @@ public class GameLogic implements Logic {
  			}
  			Board[x][y]=actualColor;
  			changeColor();
+ 			message.add(Integer.toString(gameId));
  			
  		}
  		else {
  			message.add("N");
+ 			message.add(Integer.toString(gameId));
+ 			
  			System.out.println(x + " " + y +"Not Inserted");
  		}
  		message2 = message;
