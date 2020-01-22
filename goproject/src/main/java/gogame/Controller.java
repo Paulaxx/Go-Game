@@ -309,7 +309,7 @@ public class Controller {
 		
 	}
 	
-	public void buttonb(String color, String x, String y) {
+	public void buttonb(String color, String x, String y, String gameId) {
 		System.out.println("Controller buttonb"+x+" "+y);
 		
 		switch (x) {
@@ -835,7 +835,8 @@ public class Controller {
 		int yy=Integer.parseInt(y);
 		stone.setY(yy);
 		
-		stone.setGameId(Player.gameId);
+		Integer gameIdd = Integer.parseInt(gameId);
+		stone.setGameId(gameIdd);
 		session.save(stone);
 		
 		tx.commit();
