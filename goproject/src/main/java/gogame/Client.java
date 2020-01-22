@@ -10,6 +10,7 @@ import java.net.*;
 import javax.swing.*;
 
 
+
 public class Client extends Application { //extends JFrame implements ActionListener
 	
 	static Socket Socket;

@@ -1,7 +1,9 @@
 package gogame;
 
 import java.util.concurrent.ThreadLocalRandom;
+
 import java.util.ArrayList;
+
 
 public class GameLogic implements Logic {
 
@@ -23,6 +25,7 @@ public class GameLogic implements Logic {
 		CopyTheBoard();
 		CopyThe2Board();
 		resetBotBoard();
+		
 	}
 	
 	

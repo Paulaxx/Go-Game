@@ -2,6 +2,14 @@ package gogame;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -283,10 +291,27 @@ public class Controller {
 	        break;
 		}
 		
+		Configuration con= new Configuration().configure().addAnnotatedClass(Stone.class);
+		con.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		ServiceRegistry reg =new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
+		@SuppressWarnings("deprecation")
+		SessionFactory sf = con.buildSessionFactory();
+	
+		Session session = sf.openSession();
+		
+		Stone stone = new Stone();
+		int xx=Integer.parseInt(x);
+		stone.setX(xx);
+		int yy=Integer.parseInt(y);
+		stone.setY(yy);
+
+		session.delete(stone);
+		
 	}
 	
 	public void buttonb(String color, String x, String y) {
 		System.out.println("Controller buttonb"+x+" "+y);
+		
 		switch (x) {
 	    case "0":
 	        if(y.contentEquals("0")) {
@@ -793,6 +818,27 @@ public class Controller {
 	        }
 	        break;
 		}
+		
+		Configuration con= new Configuration().configure().addAnnotatedClass(Stone.class);
+		con.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		ServiceRegistry reg =new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
+		@SuppressWarnings("deprecation")
+		SessionFactory sf = con.buildSessionFactory();
+	
+		Session session = sf.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Stone stone = new Stone();
+		stone.setColor(color);
+		int xx=Integer.parseInt(x);
+		stone.setX(xx);
+		int yy=Integer.parseInt(y);
+		stone.setY(yy);
+		
+		stone.setGameId(Server.lastId);
+		session.save(stone);
+		
+		tx.commit();
 	}
 	
 	public void clickmethod(MouseEvent e){
