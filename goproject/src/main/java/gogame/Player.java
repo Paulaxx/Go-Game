@@ -14,11 +14,13 @@ public class Player implements Runnable{
 	ObjectInputStream input;
 	ObjectOutputStream output;
 	Player opponent;
+	static int gameId;
 
-    public Player(Socket socket, char color, GameLogic gamelogic) throws IOException{
+    public Player(Socket socket, char color, GameLogic gamelogic, int gameId) throws IOException{
         this.socket = socket;
         this.color = color;
         this.gamelogic = gamelogic;
+        Player.gameId=gameId;
         
     }
     

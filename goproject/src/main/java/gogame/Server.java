@@ -46,15 +46,15 @@ public class Server {
 		lastId = (Integer) session.createQuery( sql ).uniqueResult();
 		System.out.println(lastId);
 		
-		GameLogic gamelogic = new GameLogic();
+		GameLogic gamelogic = new GameLogic(lastId);
 		try {
 			server = new ServerSocket(5011); 
 			ExecutorService pool = Executors.newFixedThreadPool(200);
 			while(true) {
-				Player player1= new Player(server.accept(), 'B', gamelogic);
+				Player player1= new Player(server.accept(), 'B', gamelogic, lastId);
 				players.add(player1);
 				pool.execute(player1);
-				Player player2= new Player(server.accept(), 'W', gamelogic);
+				Player player2= new Player(server.accept(), 'W', gamelogic, lastId);
 				players.add(player2);
 				pool.execute(player2);
 			}

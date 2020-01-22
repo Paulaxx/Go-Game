@@ -19,13 +19,12 @@ public class GameLogic implements Logic {
 	public ArrayList<String> message2 = new ArrayList<>();
 	
 	
-	public GameLogic() {
+	public GameLogic(int gameId) {
 
 		resetBoard();
 		CopyTheBoard();
 		CopyThe2Board();
 		resetBotBoard();
-		
 	}
 	
 	

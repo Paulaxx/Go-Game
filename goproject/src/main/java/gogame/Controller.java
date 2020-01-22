@@ -835,7 +835,7 @@ public class Controller {
 		int yy=Integer.parseInt(y);
 		stone.setY(yy);
 		
-		stone.setGameId(Server.lastId);
+		stone.setGameId(Player.gameId);
 		session.save(stone);
 		
 		tx.commit();
